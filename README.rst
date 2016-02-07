@@ -8,20 +8,20 @@ An experimental terminal widget (curses) manger for humans.
 
 Please not that this is a work in progress. Use at your own risk.
 
-Although there are a handful of relatively decent curses libraries, they either
-are awkward to use requiring you to do things and know things that the
-framework should be doing for you or they do too much and are difficult to
-extend. The nwid philosophy is to let you manage the widgets and the framework
-will do all the dirty work. The code is pythonic and easy to read, which makes
-it easy to extend.
-
 Nwid is designed to be an easy-to-use curses widget library and application
 framework for building terminal GUIs with intuitive widgets, a simple and
 recognizable event loop, and a container ``App`` that can be extended or used
 as-is. Its design and components are somewhat inspired by the web browser DOM
 and its event model. It also takes some inspiration from
-`urwid <http://urwid.org/>_` and
-`npyscreen<http://npyscreen.readthedocs.org/index.html>_`.
+`urwid <http://urwid.org/>`_ and
+`npyscreen <http://npyscreen.readthedocs.org/index.html>`_.
+
+Although there are a handful of relatively decent curses libraries, they either
+are awkward to use (requiring you to do things and know things that the
+framework should be doing for you) or they do too much and are difficult to
+extend. The nwid philosophy is to let you manage the widgets and the framework
+will do all the dirty work. The code is pythonic and easy to read, which makes
+it easy to extend. Nwid is the terminal widget manager for humans.
 
 If you have any questions, comments, or suggestions I'd love to hear them:
 harold (a) bradleystudio.net
@@ -53,6 +53,7 @@ Importing and Basic Usage
 .. code:: python
 
     >>> import nwid
+
     >>> app = nwid.App()
     >>> app.run()
 
