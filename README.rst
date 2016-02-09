@@ -2,8 +2,9 @@ nwid
 ####
 A terminal widgets framework for humans.
 ===========================================================
-.. image: https://www.quantifiedcode.com/api/v1/project/0135ae22444d43fca231b360e6e0799c/badge.svg
-  :target: https://www.quantifiedcode.com/app/project/0135ae22444d43fca231b360e6e0799c :alt: Code issues
+.. image:: https://www.quantifiedcode.com/api/v1/project/d817599b176740e49b42d1f8402d4d3e/badge.svg
+  :target: https://www.quantifiedcode.com/app/project/d817599b176740e49b42d1f8402d4d3e
+  :alt: Code issues
 ----
 
 Please not that this is a work in progress. Use at your own risk.
