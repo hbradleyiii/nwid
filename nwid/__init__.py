@@ -12,7 +12,7 @@
 nwid
 ~~~~
 
-An experimental terminal widget (curses) manger for humans.
+A terminal widgets framework for humans.
 """
 
 from __future__ import absolute_import
