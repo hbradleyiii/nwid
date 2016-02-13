@@ -7,22 +7,32 @@ A terminal widgets framework for humans.
   :alt: Code issues
 ----
 
-Please not that this is a work in progress. Use at your own risk.
+Please note that this is a work in progress. The API will likely change many
+times before it becomes stable. Use at your own risk.
 
-Nwid is designed to be an easy-to-use curses widget library and application
-framework for building terminal GUIs with intuitive widgets, a simple and
-recognizable event loop, and a container ``App`` that can be extended or used
-as-is. Its design and components are somewhat inspired by the web browser DOM
-and its event model. It also takes some inspiration from
+Nwid is a terminal widgets framework for humans.
+
+It is designed to be an easy-to-use, light-weight (no dependencies), curses
+widget library and application framework for building terminal GUIs. It has
+intuitive widgets, a simple and recognizable event loop, and a container
+``App`` that can be extended or used as-is. Its design and components take some
+inspiration from the well-known web browser DOM as well as the python packages
 `urwid <http://urwid.org/>`_ and
 `npyscreen <http://npyscreen.readthedocs.org/index.html>`_.
 
-Although there are a handful of relatively decent curses libraries, they either
-are awkward to use (requiring you to do things and know things that the
-framework should be doing for you) or they do too much and are difficult to
-extend. The nwid philosophy is to let you manage the widgets and the framework
-will do all the dirty work. The code is pythonic and easy to read, which makes
-it easy to extend. Nwid is the terminal widget manager for humans.
+Although there already are a handful of curses python frameworks and libraries,
+they either are cumbersome to use or their design makes them difficult to
+extend. The nwid philosophy is to let you create and describe the widgets with
+intuitive attributes and methods, and the framework will take care of the
+cumbersome curses details. The code is pythonic and easy to read, which makes
+it easy to extend.
+
+A low-level knowledge of curses is not necessary to using this framework. To
+get started, check out the examples in the examples directory. Nwid is designed
+to be conceptually easy to understand, and the examples are intended to exhibit
+the basic concepts in order to give a helpful overview of the capabilities and
+structure of the framework. After looking at the examples, you can read
+`Modules and Components`_ for more specific details about the framework.
 
 If you have any questions, comments, or suggestions I'd love to hear them:
 harold (a) bradleystudio.net
