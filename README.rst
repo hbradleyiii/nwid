@@ -20,9 +20,12 @@ inspiration from the well-known web browser DOM as well as the python packages
 `urwid <http://urwid.org/>`_ and
 `npyscreen <http://npyscreen.readthedocs.org/index.html>`_.
 
-Although there already are a handful of curses python frameworks and libraries,
-they either are cumbersome to use or their design makes them difficult to
-extend. The nwid philosophy is to let you create and describe the widgets with
+Although there already are a handful of terminal user-interface libraries in
+python, I have found them to be either cumbersome to use or difficult to extend
+because of their design. The python curses module is itself unweildly and
+desperately needs a layer of abstraction to hide its unique details and oddly
+named functions. Nwid aims to be this intuitive, easy to extend abstraction
+layer. The nwid philosophy is to let you create and describe the widgets with
 intuitive attributes and methods, and the framework will take care of the
 cumbersome curses details. The code is pythonic and easy to read, which makes
 it easy to extend.
