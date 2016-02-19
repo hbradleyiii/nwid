@@ -18,6 +18,9 @@ A terminal widgets framework for humans.
 from __future__ import absolute_import
 
 from .app import App
+from .events import EventHandler
+from .exceptions import ExitNwidApp, PreventDefault, CloseWindow, WindowNotBound, OutOfBounds
+from .window import Window
 from . import widget
 
 
@@ -26,3 +29,5 @@ __version__ = '0.0.1'
 __author__ = 'Harold Bradley III'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2016 Harold Bradley III'
+
+# Soli Deo gloria. <><
