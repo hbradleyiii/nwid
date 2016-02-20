@@ -23,6 +23,11 @@ def mock_wrong_callback():
 
 ## Test data structure HandlerList ##
 
+def test_handlerlist_initialize_with_item():
+    """Tests adding an item to a HandlerList."""
+    handler_list = HandlerList(mock_callback, 1)
+    assert handler_list._list[0] == handler_list.Item(mock_callback, 1)
+
 def test_handlerlist_add():
     """Tests adding an item to a HandlerList."""
     handler_list = HandlerList()

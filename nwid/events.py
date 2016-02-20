@@ -23,13 +23,15 @@ class HandlerList(object):
     """This class defines an ordered list of a namedtuple with a callback_func and priority.
     The list is ordered based off the priority with lower integers coming
     before higher integers. This list is intended to be used as the list of
-    handlers that an event has."""
+    handlers for one particular event."""
 
     Item = namedtuple('HandlerListItem', ['callback_func', 'priority'])
 
-    def __init__(self):
-        """Initializes an empty list."""
+    def __init__(self, callback_func=None, priority=50):
+        """Initializes an empty list. Can optionally add an item at initialization."""
         self._list = []
+        if callback_func:
+            self.add(callback_func, priority)
 
     def __len__(self):
         """Returns the length of the list."""
