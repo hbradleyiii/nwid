@@ -50,9 +50,7 @@ Installing nwid
 
 .. code:: bash
 
-    $ git clone git@github.com:hbradleyiii/nwid.git
-    $ cd <project directory>
-    $ pip install -e .
+    $ pip install nwid
 
 Running Tests
 -------------
