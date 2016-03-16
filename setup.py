@@ -24,7 +24,7 @@ setup(
     description = 'A terminal widget framework for humans.',
     long_description = readme,
     url = 'https://github.com/hbradleyiii/nwid',
-    download_url = 'https://github.com/hbradleyiii/nwid/archive/0.1.tar.gz',
+    download_url = 'https://github.com/hbradleyiii/nwid/archive/v0.1-planning.tar.gz',
     author = 'Harold Bradley III',
     author_email = 'harold@bradleystudio.net',
     license = 'MIT License',
