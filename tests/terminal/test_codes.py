@@ -13,9 +13,9 @@ Unittests for nwid.terminal.codes module.
 
 from __future__ import absolute_import
 
+from nwid import terminal
 from nwid.terminal.codes import *
 import pytest
-import terminal
 
 
 ## Terminal Code functional tests ##
