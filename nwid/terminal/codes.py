@@ -11,7 +11,8 @@
 nwid.terminal.codes
 ~~~~~~~~~~~~~~~~~~~
 
-This module contains common ASCII/ANSI terminal codes and helper functions.
+This module contains common ASCII/ANSI terminal codes and helper functions used
+by nwid.
 """
 
 from __future__ import absolute_import
@@ -69,7 +70,7 @@ def sgr_reset():
     return sgr(code['RESET'])
 
 
-# Terminal code object & terminal codes initialization
+# Terminal code object
 
 class TerminalCode(object):
     """A terminal code object containing its name, value, and group"""
@@ -90,6 +91,8 @@ class TerminalCode(object):
     def __radd__(self, other):
         return other + self.value
 
+
+# Terminal codes initialization
 
 _codes = {
 
