@@ -157,10 +157,10 @@ _codes = {
 
 code = dict()
 
-for group, codes in _codes.items():
-    for _code, value in codes.items():
+for _group, _codes in _codes.items():
+    for _code, _value in _codes.items():
         # Create the dict:
-        code[_code] = TerminalCode(_code, value, group)
+        code[_code] = TerminalCode(_code, _value, _group)
 
         # Also, Make the variable available in this (nwid.terminal) namespace:
-        setattr(sys.modules[__name__], _code, value)
+        setattr(sys.modules[__name__], _code, _value)
