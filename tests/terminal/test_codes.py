@@ -18,39 +18,13 @@ from nwid.terminal.codes import *
 import pytest
 
 
-## Terminal Code functional tests ##
+## Terminal Code initialization test ##
 
 def test_code_initialization():
-    assert terminal.code['BLACK'].name == 'BLACK'
-    assert terminal.BLACK == terminal.code['BLACK'].value
-    assert terminal.BLACK == str(terminal.code['BLACK'])
-    assert terminal.BLACK + ';' == terminal.code['BLACK'] + ';'
-
-
-## SGR functional tests ##
-
-def test_sgr_codes():
-    assert sgr(code['BLACK']) == terminal.CSI + terminal.BLACK + 'm'
-    assert sgr(code['BG_BLACK']) == terminal.CSI + terminal.BG_BLACK + 'm'
-
-def test_can_combine_sgr_codes():
-    assert sgr(code['BLACK'], code['BG_RED']) == terminal.CSI + terminal.BLACK \
-        + terminal.DELIMITER + terminal.BG_RED+ 'm'
-    assert sgr(code['UNDERLINE'], code['BLACK'], code['BG_RED']) == \
-        terminal.CSI + terminal.UNDERLINE + terminal.DELIMITER + \
-        terminal.BLACK + terminal.DELIMITER + terminal.BG_RED+ 'm'
-
-def test_cannot_combine_multiple_sgr_fg_colors():
-    with pytest.raises(SGR_FGColorError):
-        sgr(code['BLACK'], code['RED'])
-
-def test_cannot_combine_multiple_sgr_bg_colors():
-    print code['BLACK'].group
-    with pytest.raises(SGR_BGColorError):
-        sgr(code['BG_BLACK'], code['BG_RED'])
-
-def test_sgr_reset():
-    assert sgr(code['RESET']) == sgr_reset()
+    assert str(terminal.BLACK) == '30'
+    assert terminal.BLACK.value == '30'
+    assert BLACK + ';' == '30;'
+    assert BLACK.group == 'fg_color'
 
 
 ## Test TerminalCode object ##
@@ -87,3 +61,17 @@ def test_TerminalCode_can_be_concatenated_with_a_string():
     terminal_code = TerminalCode('name-1', 'value-1')
     string = 'value-2'
     assert terminal_code + string == 'value-1value-2'
+
+def test_TerminalCode_can_be_used_with_args():
+    """A TerminalCode object can be concatenated with a string."""
+    terminal_code_1 = TerminalCode('name-1', 'abc{}')
+    terminal_code_2 = TerminalCode('name-2', 'abc{}123{}567{}')
+    assert str(terminal_code_1.using('d')) == 'abcd'
+    assert str(terminal_code_2.using('d', '4', '8')) == 'abcd12345678'
+
+def test_TerminalCode_with_placeholder_but_no_args_defaults_to_1():
+    """A TerminalCode object can be concatenated with a string."""
+    terminal_code_1 = TerminalCode('name-1', 'abc{}')
+    terminal_code_2 = TerminalCode('name-2', 'abc{}123{}567{}')
+    assert str(terminal_code_1) == 'abc1'
+    assert str(terminal_code_2) == 'abc112315671'

@@ -11,117 +11,124 @@
 nwid.terminal.codes
 ~~~~~~~~~~~~~~~~~~~
 
-This module contains common ASCII/ANSI terminal codes and helper functions used
-by nwid.
+This module contains common ANSI terminal codes used by nwid.
+
+The codes are created at runtime each as a TerminalCode object. Doing it this
+way gives the option to potentially adjust codes based on the machine or
+pseudoterminal.
 """
 
 from __future__ import absolute_import
 
-import sys
+from sys import modules, stdout
 
 
-# SGR Exceptions
-
-class SGR_FGColorError(Exception): pass
-class SGR_BGColorError(Exception): pass
-class SGR_Error(Exception): pass
-
-
-# Functions for creating SGR escape sequences
-
-def _combine_sgr_codes(*codes):
-    """Returns multiple attributes concatenated and separated by DELIMITER."""
-    has_fg_code = False
-    has_bg_code = False
-
-    # Error checking:
-    for code in codes:
-        # Must be in one of these groups:
-        if code.group not in [ 'style', 'fg_color', 'bg_color']:
-            raise SGR_Error('Not an SGR code.')
-
-        # Should only have one foreground color:
-        if code.group == 'fg_color':
-            if has_fg_code:
-                raise SGR_FGColorError('Cannot have multiple foreground colors\
-                                       at the same time.')
-            else:
-                has_fg_code = True
-
-        # Should only have one background color:
-        if code.group == 'bg_color':
-            if has_bg_code:
-                raise SGR_BGColorError('Cannot have multiple background colors\
-                                       at the same time.')
-            else:
-                has_bg_code = True
-
-    return reduce(lambda a, b: str(a) + DELIMITER + str(b), codes)
-
-def sgr(*args):
-    """Returns an SGR (Select Graphic Rendition) escape sequence given one or
-    more attributes."""
-    if not args:
-        return ''
-    return CSI + _combine_sgr_codes(*args) + 'm'
-
-def sgr_reset():
-    """Returns the escape sequence to reset the terminal to default."""
-    return sgr(code['RESET'])
-
-
-# Terminal code object
+# Terminal code object #
 
 class TerminalCode(object):
     """A terminal code object containing its name, value, and group"""
+
     def __init__(self, name, value, group=None):
+        """Initializes a TerminalCode with a name, value, and optional
+        group."""
         self.name = name
         self.value = value
         self.group = group
 
     def __str__(self):
+        """Returns the string representation of the TerminalCode, replacing any
+        placeholder with '1'."""
+        if '{}' in self.value:
+            return self.using(*('1',) * self.value.count('{}'))
         return str(self.value)
 
     def __repr__(self):
         return 'TODO:'
 
     def __add__(self, other):
-        return self.value + other
+        """Allow string concatenation."""
+        return self.value + str(other)
 
     def __radd__(self, other):
-        return other + self.value
+        """Allow string concatenation."""
+        return str(other) + self.value
+
+    def using(self, *args):
+        """Replaces any placeholders ('{}') with *args."""
+        return self.value.format(*args)
+
+    def execute(self, *args):
+        """Outputs (executes) an escape sequence."""
+        stdout.write(self.using(*args))
+        stdout.flush()
 
 
-# Terminal codes initialization
+# Terminal codes initialization #
+
+# General ASCII Codes
+
+NULL =    '\00'   # Null character
+BEL  =    '\007'  # Terminal Bell
+BS   =    '\010'  # Backspace
+HT   =    '\011'  # Horizontal Tab
+LF   =    '\012'  # Linefeed (newline)
+VT   =    '\013'  # Vertical Tab
+FF   =    '\014'  # Formfeed (or NP: new page)
+CR   =    '\015'  # Carriage Return
+DEL  =    '\177'  # Delete character
+ESC  =    '\033'  # Escape character
+CSI  =    '\033[' # Used to initialize control sequences
+OSI  =    '\033]'
+
+DELIMITER = ';'
 
 _codes = {
 
-    # General ASCII Codes
+    # Cursor manipulation escape sequences
 
-    'ascii_general' : {
-        'NULL':   '\00',   # Null character
-        'BEL':    '\007',  # Terminal Bell
-        'BS':     '\010',  # Backspace
-        'HT':     '\011',  # Horizontal Tab
-        'LF':     '\012',  # Linefeed (newline)
-        'VT':     '\013',  # Vertical Tab
-        'FF':     '\014',  # Formfeed (or NP: new page)
-        'CR':     '\015',  # Carriage Return
-        'ESC':    '\033',  # Escape character
-        'DEL':    '\177',  # Delete character
+    'cursor_manipulation' : {
+        'CURSOR_HIDE':                CSI + '?25l',
+        'CURSOR_SHOW':                CSI + '?25h',
+        'CURSOR_UP':                  CSI + '{}A',   # NOTE: {} must be replaced with an integer.
+        'CURSOR_DOWN':                CSI + '{}B',
+        'CURSOR_RIGHT':               CSI + '{}C',
+        'CURSOR_LEFT':                CSI + '{}D',
+        'CURSOR_NEXT_LINE':           CSI + '{}E',
+        'CURSOR_PREVIOUS_LINE':       CSI + '{}F',
+        'CURSOR_HORIZONTAL_ABSOLUTE': CSI + '{}G',
+        'CURSOR_SET_POSITION':        CSI + '{};{}f',
+        'CURSOR_GET_POSITION':        'TODO', # TODO
+        'CURSOR_SAVE_POSITION':       CSI + 's',
+        'CURSOR_RESTORE_POSITION':    CSI + 'u',
     },
 
 
-    # Escape Sequences
+    # Screen manipulation escape sequences
 
-    'meta_sequences' : {
-        'CSI':       '\033[',
-        'OSC':       '\033]',
-        'DELIMITER': ';',
+    'screen_manipulation' : {
+        'CLEAR_SCREEN':        CSI + '2J',
+        'CLEAR_DOWN':          CSI + '0J',
+        'CLEAR_UP':            CSI + '1J',
+        'CLEAR_LINE':          CSI + '2K',
+        'CLEAR_LINE_FORWARD':  CSI + '0K',
+        'CLEAR_LINE_BACKWARD': CSI + '1K',
     },
 
 
-    # Colors/Styles
+    # Terminal settings
+
+    'terminal_settings': {
+        'RESET_TERMINAL':    ESC + 'c',
+        'ENABLE_LINE_WRAP':  CSI + '7h',
+        'DISABLE_LINE_WRAP': CSI + '7l',
+        'SET_SCROLL_ALL':    CSI + 'r',
+        'SET_SCROLL':        CSI + '0;0r',
+        'SCROLL_UP':         ESC + 'D',
+        'SCROLL_UP':         ESC + 'M',
+    },
+
+
+    # SGR escape sequences (Colors/Styles)
 
     'style': {
         'RESET':        '0',
@@ -158,12 +165,9 @@ _codes = {
     }
 }
 
-code = dict()
 
+# Initialize the TerminalCode object and make it available in this
+# (nwid.terminal) namespace:
 for _group, _codes in _codes.items():
-    for _code, _value in _codes.items():
-        # Create the dict:
-        code[_code] = TerminalCode(_code, _value, _group)
-
-        # Also, Make the variable available in this (nwid.terminal) namespace:
-        setattr(sys.modules[__name__], _code, _value)
+    for _name, _value in _codes.items():
+        setattr(modules[__name__], _name, TerminalCode(_name, _value, _group))
