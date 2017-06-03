@@ -13,8 +13,8 @@ Unittests for nwid.events.handler_list module.
 
 from __future__ import absolute_import
 
-import pytest
 from nwid.event import HandlerList
+import pytest
 
 
 def mock_callback():
