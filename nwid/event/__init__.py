@@ -5,7 +5,7 @@
 nwid.event
 ~~~~~~~~~~
 
-Code for event handling.
+This module contains objects and data structures necessary for handling events.
 """
 
 from __future__ import absolute_import
