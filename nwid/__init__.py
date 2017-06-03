@@ -17,11 +17,7 @@ A terminal widgets framework for humans.
 
 from __future__ import absolute_import
 
-from .app import App
-from .events import EventHandler
-from .exceptions import ExitNwidApp, PreventDefault, CloseWindow, WindowNotBound, OutOfBounds
-from .window import Window
-from . import widget
+from .display import Coordinates
 
 
 __title__ = 'nwid'

@@ -5,6 +5,7 @@ A terminal widgets framework for humans.
 .. image:: https://www.quantifiedcode.com/api/v1/project/d817599b176740e49b42d1f8402d4d3e/badge.svg
   :target: https://www.quantifiedcode.com/app/project/d817599b176740e49b42d1f8402d4d3e
   :alt: Code issues
+
 ----
 
 Please note that this is a work in progress. The API will likely change many
@@ -50,9 +51,7 @@ Installing nwid
 
 .. code:: bash
 
-    $ git clone git@github.com:hbradleyiii/nwid.git
-    $ cd <project directory>
-    $ pip install -e .
+    $ pip install nwid
 
 Running Tests
 -------------
@@ -246,7 +245,7 @@ For example:
     >>>
 
 String Widget
-~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 The ``nwid.widget.String`` class is a basic string widget. This widget is used
 for displaying strings.
