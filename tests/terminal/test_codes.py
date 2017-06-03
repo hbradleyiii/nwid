@@ -13,6 +13,7 @@ Unittests for nwid.terminal.codes module.
 
 from __future__ import absolute_import
 
+from mock import patch
 from nwid import terminal
 from nwid.terminal.codes import *
 import pytest
@@ -75,3 +76,19 @@ def test_TerminalCode_with_placeholder_but_no_args_defaults_to_1():
     terminal_code_2 = TerminalCode('name-2', 'abc{}123{}567{}')
     assert str(terminal_code_1) == 'abc1'
     assert str(terminal_code_2) == 'abc112315671'
+
+@patch('sys.stdout.write')
+@patch('sys.stdout.flush')
+def test_TerminalCode_execute(mock_flush, mock_write):
+    """A TerminalCode object can be concatenated with a string."""
+    terminal_code = TerminalCode('name', 'abc')
+    terminal_code.execute()
+    mock_write.assert_called_once_with('abc')
+    mock_flush.assert_called_once()
+
+@patch('sys.stdout.write')
+def test_TerminalCode_execute_with_args(mock_write):
+    """A TerminalCode object can be concatenated with a string."""
+    terminal_code = TerminalCode('name', 'abc{}efg{}ijk{}')
+    terminal_code.execute('d', 'h', 'l')
+    mock_write.assert_called_once_with('abcdefghijkl')
