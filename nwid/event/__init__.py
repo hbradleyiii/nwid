@@ -10,6 +10,7 @@ This module contains objects and data structures necessary for handling events.
 
 from __future__ import absolute_import
 
+from .event import Event
 from .keyboard import *
 
 
