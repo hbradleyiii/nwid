@@ -11,29 +11,47 @@
 Unittests for nwid.event module.
 """
 
+from nwid.event import Event, event, FiredEvent
 import pytest
-from nwid.event import EventHandler
-
-def mock_callback():
-    return True
-
-def mock_wrong_callback():
-    return False
 
 
-## Test EventHandler class ##
+## Test Event object ##
 
-def test_event_handler_register():
-    pass
+test_event = Event('MY_EVENT', 'abc', 'keyboard')
 
-def test_event_handler_unregister():
-    pass
+def test_Event_has_a_name():
+    assert test_event.name == 'MY_EVENT'
 
-def test_event_handler_handle():
-    pass
+def test_Event_has_a_value():
+    assert test_event.value == 'abc'
 
-def test_event_handler_has_child():
-    event_handler = EventHandler()
-    assert not event_handler.has_child()
+def test_Event_can_have_a_type():
+    assert test_event.type == 'keyboard'
 
-    # OUTPUTTING CONTROL STRINGS TO THE TERMINAL
+
+## Test FiredEvent object ##
+
+test_fired_event = FiredEvent(test_event, (0, 0), 'other')
+
+def test_FiredEvent_has_a_name():
+    assert test_fired_event.name == 'MY_EVENT'
+
+def test_FiredEvent_has_a_value():
+    assert test_fired_event.value == 'abc'
+
+def test_FiredEvent_can_have_a_type():
+    assert test_fired_event.type == 'keyboard'
+
+def test_FiredEvent_has_a_cursor_position():
+    assert test_fired_event.cursor_pos == (0, 0)
+
+def test_FiredEvent_can_have_other_args():
+    assert test_fired_event.args == 'other'
+
+
+## Test event dict ##
+
+def test_event_dict_contains_an_Event():
+    assert event['KEY_UP'].value == '\x1b[A'
+    assert event['KEY_UP'].type == 'keyboard'
+    assert event['KEY_UP'].name == 'KEY_UP'
