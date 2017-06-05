@@ -8,53 +8,72 @@
 #
 
 """
-nwid.events
-~~~~~~~~~~~
+nwid.events.handler_list
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-This module contains the Event object and the EventHandler mixin as well as the
-EventDict and HandlerList data structures.
+The HandlerList is a list of one or more listeners on an object for one
+particular event.
+
+It allows an object to have more than one listener (with different priorities)
+for the same event.
 """
 
 from __future__ import absolute_import
 
 from collections import namedtuple
 
+
 class HandlerList(object):
-    """This class defines an ordered list of a namedtuple with a callback_func and priority.
+    """A HandlerList is a list of one or more listeners on an object for one
+    particular event.
+
+    It defines an ordered list of a namedtuple (Item) with a callback_func and
+    priority.
+
     The list is ordered based off the priority with lower integers coming
     before higher integers. This list is intended to be used as the list of
-    handlers for one particular event."""
+    handlers on an object for one particular event.
 
-    Item = namedtuple('HandlerListItem', ['callback_func', 'priority'])
+    :param callback_func:
+    :param priority:
+    :param identifier:
+    """
 
-    def __init__(self, callback_func=None, priority=50):
+    Item = namedtuple('HandlerListItem', ['callback_func', 'priority',
+                                          'identifier'])
+
+    def __init__(self, callback_func=None, priority=50, identifier=None):
         """Initializes an empty list. Can optionally add an item at initialization."""
         self._list = []
         if callback_func:
-            self.add(callback_func, priority)
+            self.add(callback_func, priority, identifier)
 
     def __len__(self):
         """Returns the length of the list."""
         return len(self._list)
 
-    def add(self, callback_func, priority=50):
+    def add(self, callback_func, priority=50, identifier=None):
         """Inserts item of (callback_func, priority) into the list based on priority."""
-        new_item = self.Item(callback_func, priority)
+        new_item = self.Item(callback_func, priority, identifier)
         for index, item in enumerate(self._list):
             if priority < item.priority:
                 self._list = self._list[:index] + [new_item] + self._list[index:]
                 break
         else:
-            self._list.append(self.Item(callback_func, priority))
+            self._list.append(self.Item(callback_func, priority, identifier))
 
-    def remove(self, callback_func=None):
+    def remove(self, id_=None):
         """Removes (all) item(s) with callback_func."""
-        if not callback_func:
+        if not id_:
             raise TypeError('HandlerList.remove() method must take either a callback_func or an identifier.')
         for item in self._list:
-            if item.callback_func == callback_func:
+            if item.identifier == id_ or item.callback_func == id_:
                 self._list.remove(item)
 
     def __getitem__(self, index):
         """Returns _only_ the callback_func. Priority is only intended to be used internally."""
         return self._list[index].callback_func
+
+    def __contains__(self, id_):
+        return any(item.identifier == id_ for item in self._list) or \
+               any(item.callback_func == id_ for item in self._list)
