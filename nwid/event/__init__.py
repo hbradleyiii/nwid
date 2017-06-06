@@ -11,9 +11,7 @@ This module contains objects and data structures necessary for handling events.
 from __future__ import absolute_import
 
 from .event import Event, event, FiredEvent
-from .handler_list import HandlerList
-from .keyboard import *
-
+from .handler_list import EVENT_BUBBLE, EVENT_CAPTURE, HandlerList
 
 
 # TODO: This should probably be moved to the terminal module
