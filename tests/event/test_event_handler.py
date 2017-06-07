@@ -35,10 +35,10 @@ def Mock_reset():
     Mock.mock_callback_was_called = False
     Mock.mock_alt_callback_was_called = False
 
-class TestImplementationOfEventHandler(EventHandler):
+class MockImplementationOfEventHandler(EventHandler):
     """Mock Implementation of an EventHandler."""
     def __init__(self, *args, **kwargs):
-        super(TestImplementationOfEventHandler, self).__init__(*args, **kwargs)
+        super(MockImplementationOfEventHandler, self).__init__(*args, **kwargs)
         self._focused_child = None
         self._parent = None
 
@@ -56,7 +56,7 @@ class TestImplementationOfEventHandler(EventHandler):
     def has_parent(self):
         return True if self._parent else False
 
-class TestCallback(object):
+class MockCallback(object):
     def __init__(self):
         self.order = []
 
@@ -170,9 +170,9 @@ def test_EventHandler_can_trigger_an_event():
 def test_EventHandler_can_trigger_an_event_on_children():
     Mock_reset()
 
-    eh_parent = TestImplementationOfEventHandler()
-    eh_child = TestImplementationOfEventHandler()
-    eh_grandchild = TestImplementationOfEventHandler()
+    eh_parent = MockImplementationOfEventHandler()
+    eh_child = MockImplementationOfEventHandler()
+    eh_grandchild = MockImplementationOfEventHandler()
 
     eh_parent._focused_child = eh_child
     eh_child._focused_child = eh_grandchild
@@ -194,9 +194,9 @@ def test_EventHandler_can_trigger_an_event_on_children():
 def test_EventHandler_can_bubble_events_up_to_parents():
     Mock_reset()
 
-    eh_parent = TestImplementationOfEventHandler()
-    eh_child = TestImplementationOfEventHandler()
-    eh_grandchild = TestImplementationOfEventHandler()
+    eh_parent = MockImplementationOfEventHandler()
+    eh_child = MockImplementationOfEventHandler()
+    eh_grandchild = MockImplementationOfEventHandler()
 
     eh_parent._focused_child = eh_child
     eh_child._focused_child = eh_grandchild
@@ -224,10 +224,10 @@ def test_EventHandler_triggers_events_in_proper_order():
     parent and working until there are no more parents."""
     Mock_reset()
 
-    eh_grandparent = TestImplementationOfEventHandler()
-    eh_parent = TestImplementationOfEventHandler()
-    eh_child = TestImplementationOfEventHandler()
-    eh_grandchild = TestImplementationOfEventHandler()
+    eh_grandparent = MockImplementationOfEventHandler()
+    eh_parent = MockImplementationOfEventHandler()
+    eh_child = MockImplementationOfEventHandler()
+    eh_grandchild = MockImplementationOfEventHandler()
 
     eh_grandparent._focused_child = eh_parent
     eh_parent._focused_child = eh_child
@@ -237,7 +237,7 @@ def test_EventHandler_triggers_events_in_proper_order():
     eh_child._parent = eh_parent
     eh_grandchild._parent = eh_child
 
-    callback = TestCallback()
+    callback = MockCallback()
 
     # Should not fire:
     eh_grandparent.register('event', callback.c8, method=EVENT_CAPTURE)
