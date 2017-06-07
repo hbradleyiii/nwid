@@ -26,8 +26,6 @@ class EventHandler(object):
     It is intended to be extended by a widget like object.
     """
 
-    # TODO: int events, but how to do super with mulitple??
-
     def __init__(self, *args, **kwargs):
         """Initializes an empty collection of events."""
         self.events = {}
