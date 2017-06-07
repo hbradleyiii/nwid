@@ -24,8 +24,8 @@ from collections import namedtuple
 
 
 # Propogation methods:
-EVENT_BUBBLE  = 0   # Default (0 == False)
-EVENT_CAPTURE = 1
+EVENT_BUBBLE  = 0   # Default for creating events (0 == False)
+EVENT_CAPTURE = 1   # Default for triggering events
 
 
 class HandlerList(object):
