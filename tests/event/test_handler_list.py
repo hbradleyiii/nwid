@@ -166,6 +166,29 @@ def test_HandlerList_can_be_iterated_over():
         assert function()  # Should return true
     assert calls == 3  # and should have been called 3 times
 
+def test_HandlerList_can_iterate_using_with_method_filter():
+    """A HandlerList can be iterated over using the with_method(method)
+    function to filter by propagation method."""
+    handler_list = HandlerList()
+    handler_list.add(mock_callback, 1, method=EVENT_BUBBLE)
+    handler_list.add(mock_callback, 2, method=EVENT_BUBBLE)
+    handler_list.add(mock_callback, 3, method=EVENT_BUBBLE)
+    handler_list.add(mock_alt_callback, 4, method=EVENT_CAPTURE)
+    handler_list.add(mock_alt_callback, 5, method=EVENT_CAPTURE)
+    handler_list.add(mock_alt_callback, 6, method=EVENT_CAPTURE)
+    handler_list.add(mock_alt_callback, 7, method=EVENT_CAPTURE)
+
+    calls = 0
+    for function in handler_list.with_method(EVENT_BUBBLE):
+        calls += 1
+        assert function()  # Should return true
+    assert calls == 3  # and should have been called 3 times
+
+    for function in handler_list.with_method(EVENT_CAPTURE):
+        calls += 1
+        assert not function()  # Should return false
+    assert calls == 7  # and should have been called 7 times (3 + 4 more)
+
 def test_HandlerList_can_test_for_existance_of_identifier():
     """A HandlerList can use 'in' to test if an identifier is in the list."""
     handler_list = HandlerList()

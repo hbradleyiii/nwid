@@ -84,6 +84,12 @@ class HandlerList(object):
             if item.identifier == id_ or item.callback_func == id_:
                 self._list.remove(item)
 
+    def with_method(self, method):
+        """A generator for yeilding callback functions of a certain method."""
+        for item in (items for items in self._list
+                        if items.method == method):
+            yield item.callback_func
+
     def __getitem__(self, index):
         """Returns _only_ the callback_func. Priority is only intended to be used internally."""
         return self._list[index].callback_func
