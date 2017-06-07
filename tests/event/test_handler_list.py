@@ -8,7 +8,7 @@
 #
 
 """
-Unittests for nwid.events.handler_list module.
+Unittests for nwid.event.handler_list module.
 """
 
 from __future__ import absolute_import

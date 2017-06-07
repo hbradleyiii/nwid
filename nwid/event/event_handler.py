@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# name:             events.py
+# name:             event_handler.py
 # author:           Harold Bradley III
 # email:            harold@bradleystudio.net
 # created on:       06/02/2017
 #
 
 """
-nwid.events
-~~~~~~~~~~~
+nwid.event
+~~~~~~~~~~
 
 The event handler is a mixin to be exteneded by an object that should be able
 to handle events.

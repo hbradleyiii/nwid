@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# name:             events.py
+# name:             handler_list.py
 # author:           Harold Bradley III
 # email:            harold@bradleystudio.net
 # created on:       02/06/2016
 #
 
 """
-nwid.events.handler_list
+nwid.event.handler_list
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 The HandlerList is a list of one or more listeners on an object for one
