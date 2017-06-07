@@ -101,17 +101,17 @@ def test_HandlerList_can_add_items_with_an_identifier():
     assert handler_list._list[0].identifier == 'first-item'
     assert handler_list._list[1].identifier == 'second-item'
 
-def test_HandlerList_can_add_items_with_a_propagation_type():
-    """A HandlerList can add items with a propagation type."""
+def test_HandlerList_can_add_items_with_a_propagation_method():
+    """A HandlerList can add items with a propagation method type."""
     handler_list = HandlerList()
-    handler_list.add(mock_callback, 1, propagation=EVENT_CAPTURE)
-    handler_list.add(mock_callback, 2, propagation=EVENT_BUBBLE)
-    handler_list.add(mock_callback, 3, propagation=True)
-    handler_list.add(mock_callback, 4, propagation=False)
-    assert handler_list._list[0].propagation == EVENT_CAPTURE
-    assert handler_list._list[1].propagation == EVENT_BUBBLE
-    assert handler_list._list[2].propagation == True
-    assert handler_list._list[3].propagation == False
+    handler_list.add(mock_callback, 1, method=EVENT_CAPTURE)
+    handler_list.add(mock_callback, 2, method=EVENT_BUBBLE)
+    handler_list.add(mock_callback, 3, method=True)
+    handler_list.add(mock_callback, 4, method=False)
+    assert handler_list._list[0].method == EVENT_CAPTURE
+    assert handler_list._list[1].method == EVENT_BUBBLE
+    assert handler_list._list[2].method == True
+    assert handler_list._list[3].method == False
 
 def test_HandlerList_can_tell_its_len():
     """A HandlerList should be able to return its length."""
