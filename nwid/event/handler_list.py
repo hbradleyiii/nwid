@@ -81,7 +81,7 @@ class HandlerList(object):
         if not id_:
             raise TypeError('HandlerList.remove() method must take either a callback_func or an identifier.')
         for item in self._list:
-            if item.identifier == id_ or item.callback_func == id_:
+            if id_ in [item.identifier, item.callback_func]:
                 self._list.remove(item)
 
     def with_method(self, method):
