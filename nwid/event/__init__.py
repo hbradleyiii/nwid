@@ -12,6 +12,7 @@ from __future__ import absolute_import
 
 from .event import Event, event, FiredEvent
 from .event_handler import EventHandler
+from .event_loop import EventLoop
 from .handler_list import EVENT_BUBBLE, EVENT_CAPTURE, HandlerList
 
 
