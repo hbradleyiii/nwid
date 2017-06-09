@@ -15,45 +15,49 @@ This module contains the Coordinates data structure.
 """
 
 class Coordinates(object):
-    def __init__(self, x = 0, y = 0):
-        """Initializes the x and y attributes."""
-        self.x = x
-        self.y = y
+    """A Coordinates object represents the row and column of a screen position."""
+    def __init__(self, row = 0, col = 0):
+        """Initializes the row and col attributes."""
+        self.row = row
+        self.col = col
 
     def __str__(self):
-        return '(' + str(self.x) + ', ' + str(self.y) + ')'
+        """Coordinates string."""
+        return '(' + str(self.row) + ', ' + str(self.col) + ')'
 
     def __repr__(self):
+        """Coordinates repr."""
         return 'Coordinates' + str(self)
 
     def __eq__(self, other):
-        """Compares 2 sets of coordinates."""
+        """Compares this object with another Coordinates object."""
         try:
-            return self.x == other.x and self.y == other.y
-        except AttributeError:  # Can also take a tuple (x, y)
-            return self.x == other[0] and self.y == other[1]
+            return self.row == other.row and self.col == other.col
+        except AttributeError:  # Can also take a tuple (row, col)
+            return self.row == other[0] and self.col == other[1]
 
     def __add__(self, other):
-        """Adds 2 sets of coordinates, or one integer to the x and y of this object."""
+        """Adds either a Coordinates or a tuple of (row, col) to this object."""
         try:
-            return Coordinates(self.x + other.x, self.y + other.y)
-        except AttributeError:  # Can also take a tuple (x, y)
-            return Coordinates(self.x + other[0], self.y + other[1])
+            return Coordinates(self.row + other.row, self.col + other.col)
+        except AttributeError:  # Can also take a tuple (row, col)
+            return Coordinates(self.row + other[0], self.col + other[1])
 
     def __radd__(self, other):
-        """Adds 2 sets of coordinates, or one integer to the x and y of this object."""
+        """Adds either a Coordinates or a tuple of (row, col) to this object."""
         return self.__add__(other)
 
     def __sub__(self, other):
-        """Subtracts corresponding x and y  or an integer from this object."""
+        """Subtracts either a Coordinates or a tuple of (row, col) from this object."""
         try:
-            return Coordinates(self.x - other.x, self.y - other.y)
-        except AttributeError:  # Can also take a tuple (x, y)
-            return Coordinates(self.x - other[0], self.y - other[1])
+            return Coordinates(self.row - other.row, self.col - other.col)
+        except AttributeError:  # Can also take a tuple (row, col)
+            return Coordinates(self.row - other[0], self.col - other[1])
 
     def __rsub__(self, other):
-        """Subtracts this object's x and y from a set of coordinates or an integer."""
+        """Subtracts this object's row, col from either another Coordinates or
+        a tuple of (row, col)."""
         try:
-            return Coordinates(other.x - self.x, other.y - self.y)
-        except AttributeError:  # Can also take a tuple (x, y)
-            return Coordinates(other[0] - self.x, other[1] - self.y)
+            return Coordinates(other.row - self.row, other.col - self.col)
+        except AttributeError:  # Can also take a tuple (row, col)
+            return Coordinates(other[0] - self.row, other[1] - self.col)

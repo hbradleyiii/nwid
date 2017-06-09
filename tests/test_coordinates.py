@@ -19,14 +19,14 @@ from nwid import Coordinates
 def test_Coordinates_can_be_initialized_without_args():
     """A Coordinates object can be initialized without any arguments."""
     coordinates = Coordinates()
-    assert coordinates.x == 0
-    assert coordinates.y == 0
+    assert coordinates.row == 0
+    assert coordinates.col == 0
 
 def test_Coordinates_can_be_initialized_with_rows_and_cols():
     """A Coordinates object can be initialized with rows and cols."""
     coordinates = Coordinates(10, 5)
-    assert coordinates.x == 10
-    assert coordinates.y == 5
+    assert coordinates.row == 10
+    assert coordinates.col == 5
 
 def test_Coordinates_has_a_string_representation_of_itself():
     """A Coordinates object has a string representation of itself
