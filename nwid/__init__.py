@@ -17,7 +17,7 @@ A terminal widgets framework for humans.
 
 from __future__ import absolute_import
 
-from .display import Coordinates
+from .coordinates import Coordinates
 
 
 __title__ = 'nwid'
