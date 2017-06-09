@@ -194,6 +194,7 @@ _events = {
     },
 }
 
+# Using singular because this is a mapping entity
 event = {}
 
 # Create and populate dict of events (consisting of a tuple of the event,
