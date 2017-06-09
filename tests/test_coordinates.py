@@ -16,24 +16,31 @@ from nwid import Coordinates
 
 ## Test data structure Coordinates ##
 
-def test_coordinates_initialize():
-    """Tests initializing a Coordinates object."""
+def test_Coordinates_can_be_initialized_without_args():
+    """A Coordinates object can be initialized without any arguments."""
+    coordinates = Coordinates()
+    assert coordinates.x == 0
+    assert coordinates.y == 0
+
+def test_Coordinates_can_be_initialized_with_rows_and_cols():
+    """A Coordinates object can be initialized with rows and cols."""
     coordinates = Coordinates(10, 5)
     assert coordinates.x == 10
     assert coordinates.y == 5
 
-def test_coordinates_string():
-    """Tests a Coordinates object string method."""
+def test_Coordinates_has_a_string_representation_of_itself():
+    """A Coordinates object has a string representation of itself
+    '(row, col)'."""
     coordinates = Coordinates(10, 5)
     assert str(coordinates) == '(10, 5)'
 
-def test_coordinates_repr():
+def test_Coordinates_repr():
     """Tests a Coordinates object repr method."""
     coordinates = Coordinates(10, 5)
     assert repr(coordinates) == 'Coordinates(10, 5)'
 
-def test_coordinates_equality():
-    """Tests a Coordinates object equality method."""
+def test_Coordinates_can_be_compared_for_equality_equality():
+    """A Coordinates object can be compared with another for equality."""
     position1 = Coordinates(10, 5)
     position2 = Coordinates(10, 5)
     position3 = Coordinates(15, 8)
@@ -43,22 +50,34 @@ def test_coordinates_equality():
     assert position3 == Coordinates(15, 8)
     assert position3 == (15, 8)
 
-def test_coordinates_addition():
-    """Tests a Coordinates object addition method."""
+def test_Coordinates_can_be_added_to_another_Coordinates():
+    """A Coordinates object can be added to another Coordinates object."""
     position1 = Coordinates(10, 1)
     position2 = Coordinates(10, 2)
     position3 = Coordinates(20, 3)
     assert position1 + position2 == Coordinates(20, 3)
     assert position1 + position2 == position3
+
+def test_Coordinates_can_be_added_to_a_tuple():
+    """A Coordinates object can be added to a tuple of (row, col)."""
+    position1 = Coordinates(10, 1)
+    position2 = Coordinates(10, 2)
+    position3 = Coordinates(20, 3)
     assert position1 + (10, 2) == position3
     assert (10, 1) + position2 == position3
 
-def test_coordinates_subtraction():
-    """Tests a Coordinates object subtraction method."""
+def test_Coordinates_can_be_subtracted_from_another_Coordinates():
+    """A Coordinates object can be subtracted from another Coordinates object."""
     position1 = Coordinates(10, 5)
     position2 = Coordinates(5, 2)
     position3 = Coordinates(5, 3)
     assert position1 - position2 == Coordinates(5, 3)
     assert position1 - position2 == position3
+
+def test_Coordinates_can_be_subtracted_from_a_tuple():
+    """A Coordinates object can be subtracted from a tuple of (row, col)."""
+    position1 = Coordinates(10, 5)
+    position2 = Coordinates(5, 2)
+    position3 = Coordinates(5, 3)
     assert position1 - (5, 2) == position3
     assert (10, 5) - position2 == position3

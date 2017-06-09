@@ -15,7 +15,7 @@ This module contains the Coordinates data structure.
 """
 
 class Coordinates(object):
-    def __init__(self, x, y):
+    def __init__(self, x = 0, y = 0):
         """Initializes the x and y attributes."""
         self.x = x
         self.y = y
