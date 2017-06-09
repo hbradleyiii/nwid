@@ -14,7 +14,6 @@ Unittests for nwid.event.handler_list module.
 from __future__ import absolute_import
 
 from nwid.event import EVENT_BUBBLE, EVENT_CAPTURE, HandlerList
-import pytest
 
 
 def mock_callback():
