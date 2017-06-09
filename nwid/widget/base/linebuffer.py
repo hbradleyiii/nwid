@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# name:             widget.py
+# name:             linebuffer.py
 # author:           Harold Bradley III
 # email:            harold@bradleystudio.net
 # created on:       06/08/2017
