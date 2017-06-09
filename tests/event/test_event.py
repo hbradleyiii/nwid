@@ -12,7 +12,6 @@ Unittests for nwid.event module.
 """
 
 from nwid.event import Event, event, FiredEvent
-import pytest
 
 
 ## Test Event object ##
