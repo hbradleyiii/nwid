@@ -124,7 +124,7 @@ _codes = {
         'SET_SCROLL_ALL':    CSI + 'r',
         'SET_SCROLL':        CSI + '0;0r',
         'SCROLL_UP':         ESC + 'D',
-        'SCROLL_UP':         ESC + 'M',
+        'SCROLL_DOWN':       ESC + 'M',
     },
 
 
