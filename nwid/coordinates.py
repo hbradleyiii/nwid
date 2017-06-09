@@ -1,22 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# name:             display.py
+# name:             coordinates.py
 # author:           Harold Bradley III
 # email:            harold@bradleystudio.net
 # created on:       02/19/2016
 #
 
 """
-nwid.display
-~~~~~~~~~~~~
+nwid.coordinates
+~~~~~~~~~~~~~~~~
 
-This module contains the RawDisplay class as well as the Coordinates data
-structure.
+This module contains the Coordinates data structure.
 """
-
-from __future__ import absolute_import
-
 
 class Coordinates(object):
     def __init__(self, x, y):
@@ -61,7 +57,3 @@ class Coordinates(object):
             return Coordinates(other.x - self.x, other.y - self.y)
         except AttributeError:  # Can also take a tuple (x, y)
             return Coordinates(other[0] - self.x, other[1] - self.y)
-
-
-class RawDisplay(object):
-    pass

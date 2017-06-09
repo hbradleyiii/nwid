@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# name:             test_events.py
+# name:             test_coordinates.py
 # author:           Harold Bradley III
 # email:            harold@bradleystudio.net
 # created on:       02/19/2016
 #
 
 """
-Unittests for nwid.display module.
+Unittests for nwid.coordinates module.
 """
 
 from nwid import Coordinates
