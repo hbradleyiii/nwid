@@ -21,9 +21,9 @@ from nwid.terminal.codes import *
 
 ## SGR Exceptions ##
 
-class SGR_FGColorError(Exception): pass
-class SGR_BGColorError(Exception): pass
-class SGR_Error(Exception): pass
+class SGRFGColorError(Exception): pass
+class SGRBGColorError(Exception): pass
+class SGRError(Exception): pass
 
 
 ## SGR Create functions ##
@@ -55,12 +55,12 @@ def _combine_sgr_codes(*codes):
     for code in codes:
         # Must be in one of these groups:
         if code.group not in [ 'style', 'fg_color', 'bg_color']:
-            raise SGR_Error('Not an SGR code.')
+            raise SGRError('Not an SGR code.')
 
         # Should only have one foreground color:
         if code.group == 'fg_color':
             if has_fg_code:
-                raise SGR_FGColorError('Cannot have multiple foreground colors\
+                raise SGRFGColorError('Cannot have multiple foreground colors\
                                        at the same time.')
             else:
                 has_fg_code = True
@@ -68,7 +68,7 @@ def _combine_sgr_codes(*codes):
         # Should only have one background color:
         if code.group == 'bg_color':
             if has_bg_code:
-                raise SGR_BGColorError('Cannot have multiple background colors\
+                raise SGRBGColorError('Cannot have multiple background colors\
                                        at the same time.')
             else:
                 has_bg_code = True

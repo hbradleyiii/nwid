@@ -30,15 +30,15 @@ def test_can_combine_sgr_codes():
         CSI + UNDERLINE + DELIMITER + BLACK + DELIMITER + BG_RED+ 'm'
 
 def test_cannot_combine_multiple_sgr_fg_colors():
-    with pytest.raises(sgr.SGR_FGColorError):
+    with pytest.raises(sgr.SGRFGColorError):
         sgr.create(BLACK, RED)
 
 def test_cannot_combine_multiple_sgr_bg_colors():
-    with pytest.raises(sgr.SGR_BGColorError):
+    with pytest.raises(sgr.SGRBGColorError):
         sgr.create(BG_BLACK, BG_RED)
 
 def test_cannot_use_non_sgr_escape_sequence_as_sgr():
-    with pytest.raises(sgr.SGR_Error):
+    with pytest.raises(sgr.SGRError):
         sgr.create(CURSOR_HIDE)
 
 def test_sgr_reset():
