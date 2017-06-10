@@ -61,3 +61,43 @@ class Coordinates(object):
             return Coordinates(other.row - self.row, other.col - self.col)
         except AttributeError:  # Can also take a tuple (row, col)
             return Coordinates(other[0] - self.row, other[1] - self.col)
+
+    @property
+    def rows(self):
+        """A symantic alias for referring to 'number of rows' vs 'row number'."""
+        return self.row
+
+    @rows.setter
+    def rows(self, row):
+        """A symantic alias for setting 'number of rows' vs. 'row number'."""
+        self.row += row
+
+    @property
+    def cols(self):
+        """A symantic alias for referring to 'number of cols' vs. 'col number'."""
+        return self.col
+
+    @cols.setter
+    def cols(self, col):
+        """A symantic alias for setting 'number of cols' vs. 'col number'."""
+        self.col += col
+
+    @property
+    def y(self):
+        """A symantic alias for referring to 'y' row."""
+        return self.row
+
+    @y.setter
+    def y(self, y):
+        """A symantic alias for setting 'y' row."""
+        self.row += y
+
+    @property
+    def x(self):
+        """A symantic alias for referring to 'x' column."""
+        return self.col
+
+    @x.setter
+    def x(self, x):
+        """A symantic alias for setting 'x' row."""
+        self.col += x

@@ -28,6 +28,14 @@ def test_Coordinates_can_be_initialized_with_rows_and_cols():
     assert coordinates.row == 10
     assert coordinates.col == 5
 
+def test_Coordinates_can_be_set_individually():
+    """A Coordinates object can have its (row, col) set individually."""
+    coordinates = Coordinates()
+    coordinates.row = 20
+    coordinates.col = 30
+    assert coordinates.row == 20
+    assert coordinates.col == 30
+
 def test_Coordinates_has_a_string_representation_of_itself():
     """A Coordinates object has a string representation of itself
     '(row, col)'."""
@@ -81,3 +89,37 @@ def test_Coordinates_can_be_subtracted_from_a_tuple():
     position3 = Coordinates(5, 3)
     assert position1 - (5, 2) == position3
     assert (10, 5) - position2 == position3
+
+def test_Coordinates_can_be_referenced_by_plural_attributes():
+    """A Coordinates object can be referenced by its plural attributes (rows,
+    cols)."""
+    coordinates = Coordinates(10, 5)
+    assert coordinates.rows == 10
+    assert coordinates.cols == 5
+    assert coordinates.rows == coordinates.row
+    assert coordinates.cols == coordinates.col
+
+def test_Coordinates_can_be_set_by_plural_attributes():
+    """A Coordinates object can be set by its plural attributes (rows,
+    cols)."""
+    coordinates = Coordinates()
+    coordinates.rows = 10
+    coordinates.cols = 5
+    assert coordinates.row == 10
+    assert coordinates.col == 5
+
+def test_Coordinates_can_be_referenced_by_x_y_attributes():
+    """A Coordinates object can be referenced by its x/y attributes (x, y)."""
+    coordinates = Coordinates(10, 5)
+    assert coordinates.x == 5
+    assert coordinates.y == 10
+    assert coordinates.x == coordinates.col
+    assert coordinates.y == coordinates.row
+
+def test_Coordinates_can_be_set_by_x_y_attributes():
+    """A Coordinates object can be set by its x/y attributes (x, y)."""
+    coordinates = Coordinates()
+    coordinates.y = 10
+    coordinates.x = 5
+    assert coordinates.row == 10
+    assert coordinates.col == 5
