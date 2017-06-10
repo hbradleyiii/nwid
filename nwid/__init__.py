@@ -17,7 +17,7 @@ A terminal widgets framework for humans.
 
 from __future__ import absolute_import
 
-from .coordinates import Coordinates
+from .point import Point
 from . import widget
 
 
