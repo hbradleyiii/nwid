@@ -11,6 +11,8 @@
 Unittests for nwid.event module.
 """
 
+from __future__ import absolute_import
+
 from nwid.event import Event, event, FiredEvent
 
 
