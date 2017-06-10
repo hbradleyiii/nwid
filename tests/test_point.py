@@ -108,18 +108,18 @@ def test_Point_can_be_set_by_plural_attributes():
     assert point.row == 10
     assert point.col == 5
 
-def test_Point_can_be_referenced_by_x_y_attributes():
-    """A Point object can be referenced by its x/y attributes (x, y)."""
+def test_Point_can_be_referenced_by_width_and_height_attributes():
+    """A Point object can be referenced by its width and height attributes."""
     point = Point(10, 5)
-    assert point.x == 5
-    assert point.y == 10
-    assert point.x == point.col
-    assert point.y == point.row
+    assert point.width == 5
+    assert point.height == 10
+    assert point.width == point.col
+    assert point.height == point.row
 
-def test_Point_can_be_set_by_x_y_attributes():
-    """A Point object can be set by its x/y attributes (x, y)."""
+def test_Point_can_be_set_by_width_and_height_attributes():
+    """A Point object can be set by its width and height attributes."""
     point = Point()
-    point.y = 10
-    point.x = 5
-    assert point.row == 10
-    assert point.col == 5
+    point.width = 10
+    point.height = 5
+    assert point.width == 10
+    assert point.height == 5

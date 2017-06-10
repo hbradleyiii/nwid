@@ -11,7 +11,8 @@
 nwid.point
 ~~~~~~~~~~
 
-This module contains the Point data structure.
+This module contains the Point data structure that can represent either a
+coordinates point or a size.
 """
 
 class Point(object):
@@ -83,21 +84,25 @@ class Point(object):
         self.col += col
 
     @property
-    def y(self):
-        """A symantic alias for referring to 'y' row."""
+    def height(self):
+        """A symantic alias for referring to a height corresponding with a
+        row number."""
         return self.row
 
-    @y.setter
-    def y(self, y):
-        """A symantic alias for setting 'y' row."""
-        self.row += y
+    @height.setter
+    def height(self, height):
+        """A symantic alias for setting the height correpsonding with a row
+        number."""
+        self.row += height
 
     @property
-    def x(self):
-        """A symantic alias for referring to 'x' column."""
+    def width(self):
+        """A symantic alias for referring to a width corresponding with a column
+        number."""
         return self.col
 
-    @x.setter
-    def x(self, x):
-        """A symantic alias for setting 'x' row."""
-        self.col += x
+    @width.setter
+    def width(self, width):
+        """A symantic alias for setting the width correpsonding with a row
+        number."""
+        self.col += width
