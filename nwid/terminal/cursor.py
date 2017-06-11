@@ -59,11 +59,9 @@ def horizontal_absolute(n=1):
     # TODO: not completely clear on this one...
     CURSOR_HORIZONTAL_ABSOLUTE.execute(n)
 
-def set_position(x=0, y=0):
-    """Moves cursor to position row=x and col=y (x, y).
-    NOTE: This assumes starting at (0, 0) which is different than the ANSI
-    standard; it also assumes (x, y) and not (y, x) per ANSI standard."""
-    CURSOR_SET_POSITION.execute(x, y)
+def set_position(row=0, col=0):
+    """Moves cursor to position (row, col)."""
+    CURSOR_SET_POSITION.execute(row, col)
 
 def save_position():
     """Save the current cursor position."""
@@ -74,9 +72,7 @@ def restore_position():
     CURSOR_RESTORE_POSITION.execute()
 
 def get_position():
-    """Returns a tuple of (x, y) of current cursor position.
-    NOTE: this follows conventional (x, y) order and starts with (0, 0) and not
-    the order according to the ANSI standard."""
+    """Returns a tuple of (row, col) of current cursor position."""
     QCU = CSI + '6n'  # Query cursor position (to stdin)
     RCU = CSI + '{0};{1}R' # Reports Cursor positon (result from above query
                         # Reports as <ESC>[{row};{column}R
@@ -85,18 +81,10 @@ def get_position():
 
 def row():
     """Returns the cursor's current row."""
-    return x()
+    row, col = get_position()
+    return row()
 
 def col():
     """Returns the cursor's current column."""
-    return y()
-
-def x():
-    """Returns the cursor's current row."""
-    x, y = get_position()
-    return x
-
-def y(self):
-    """Returns the cursor's current column."""
-    x, y = get_position()
-    return y
+    row, col = get_position()
+    return col()
