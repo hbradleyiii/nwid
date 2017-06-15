@@ -11,8 +11,8 @@
 nwid.point
 ~~~~~~~~~~
 
-This module contains the Point data structure that can represent either a
-coordinates point or a size.
+This module contains nwid data structures used for designating a Point and a
+Size on a coordinate plane.
 """
 
 class Point(object):
@@ -82,6 +82,9 @@ class Point(object):
     def cols(self, col):
         """A symantic alias for setting 'number of cols' vs. 'col number'."""
         self.col += col
+
+class Size(Point):
+    """A Size object represents the height and width widget or other screen element."""
 
     @property
     def height(self):

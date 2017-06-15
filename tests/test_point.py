@@ -13,7 +13,7 @@ Unittests for nwid.point module.
 
 from __future__ import absolute_import
 
-from nwid import Point
+from nwid import Point, Size
 
 
 ## Test data structure Point ##
@@ -110,18 +110,21 @@ def test_Point_can_be_set_by_plural_attributes():
     assert point.row == 10
     assert point.col == 5
 
-def test_Point_can_be_referenced_by_width_and_height_attributes():
-    """A Point object can be referenced by its width and height attributes."""
-    point = Point(10, 5)
-    assert point.width == 5
-    assert point.height == 10
-    assert point.width == point.col
-    assert point.height == point.row
 
-def test_Point_can_be_set_by_width_and_height_attributes():
-    """A Point object can be set by its width and height attributes."""
-    point = Point()
-    point.width = 10
-    point.height = 5
-    assert point.width == 10
-    assert point.height == 5
+## Test data structure Size ##
+
+def test_Size_can_be_referenced_by_width_and_height_attributes():
+    """A Size object can be referenced by its width and height attributes."""
+    size = Size(10, 5)
+    assert size.width == 5
+    assert size.height == 10
+    assert size.width == size.col
+    assert size.height == size.row
+
+def test_Size_can_be_set_by_width_and_height_attributes():
+    """A Size object can be set by its width and height attributes."""
+    size = Size()
+    size.width = 10
+    size.height = 5
+    assert size.width == 10
+    assert size.height == 5
