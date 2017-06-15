@@ -13,7 +13,7 @@ Unittests for nwid.widget.base.scrollable module.
 
 from __future__ import absolute_import
 
-from nwid import Point
+from nwid import Point, Size
 from nwid.widget.base import Scrollable
 import pytest
 
@@ -22,21 +22,21 @@ import pytest
 
 class MockScrollable(Scrollable):
     def __init__(self):
-        self.size = Point(15, 15)
+        self.size = Size(15, 15)
         self.offset = Point(5, 5)
         self.viewport = MockViewport()
         super(MockScrollable, self).__init__()
 
 class MockViewport(object):
     def __init__(self, height = 5, width = 5):
-        self.size = Point(height, width)
+        self.size = Size(height, width)
 
 
 def test_Scrollable_must_have_offset_property():
     """A Scrollable object must have an offset property."""
     class MockObject(Scrollable):
         def __init__(self):
-            self.size = Point()
+            self.size = Size()
             self.viewport = MockViewport()
             super(MockObject, self).__init__()
 
@@ -58,7 +58,7 @@ def test_Scrollable_must_have_viewport_property():
     """A Scrollable object must have a viewport property."""
     class MockObject(Scrollable):
         def __init__(self):
-            self.size = Point()
+            self.size = Size()
             self.offset = Point()
             super(MockObject, self).__init__()
 
