@@ -46,7 +46,10 @@ class Scrollable(object):
     changing its offset."""
 
     def __init__(self, horizontal_scroll = True, vertical_scroll = True ):
-        """Initializes a Scrollable object"""
+        """Initializes a Scrollable object.
+
+        Assumes an offset Point, a size Size, and a Viewport Size."""
+
         self.vertical_scroll = horizontal_scroll
         self.horizontal_scroll = vertical_scroll
 
