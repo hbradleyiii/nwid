@@ -18,10 +18,11 @@ its size.
 from __future__ import absolute_import
 
 from .codes import *
+from nwid import Size
 
 
 def size():
-    """Returns the size of the window as a tuple of columns, rows. (x, y)
+    """Returns the size of the window as a Size object (rows, cols).
     Note that this is the actual size; in order to get the bottom right corner,
     you must subtract 1 from both the rows and the columns."""
     try:
@@ -32,14 +33,14 @@ def size():
 
         with open(ctermid()) as fd:
             size = unpack('hh', ioctl(fd, TIOCGWINSZ, '----'))
-            return (size[1], size[0])  # swap the size so we have (x, y)
+            return Size(size[0], size[1])
 
     except ImportError:
         from os import environ
         try:
-            return (environ['COLUMNS'], environ['LINES'])
+            return Size(environ['COLUMNS'], environ['LINES'])
         except KeyError:
-            return (25, 80)  # just send back a best guess
+            return Size(25, 80)  # just send back a best guess
 
 def clear():
     """Clears the entire screen."""
