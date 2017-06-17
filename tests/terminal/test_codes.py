@@ -23,6 +23,7 @@ import pytest
 ## Terminal Code initialization test ##
 
 def test_code_initialization():
+    """Escape codes should be initialized properly."""
     assert str(code.BLACK) == '30'
     assert code.BLACK.value == '30'
     assert code.BLACK + ';' == '30;'
