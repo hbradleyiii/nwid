@@ -17,7 +17,7 @@ its size.
 
 from __future__ import absolute_import
 
-from .codes import *
+from . import codes as code
 from nwid import Size
 
 
@@ -44,31 +44,31 @@ def size():
 
 def clear():
     """Clears the entire screen."""
-    CLEAR_SCREEN()
+    code.CLEAR_SCREEN()
 
 def clear_down():
     """Clears the screen from the cursor down."""
-    CLEAR_DOWN()
+    code.CLEAR_DOWN()
 
 def clear_up():
     """Clears the screen from the cursor down."""
-    CLEAR_UP()
+    code.CLEAR_UP()
 
 def clear_line():
     """Clears the entire line."""
-    CLEAR_LINE()
+    code.CLEAR_LINE()
 
 def clear_line_forward():
     """Clears the line from the cursor forward."""
     # TODO: inclusive or exclusive?
-    CLEAR_LINE_FORWARD()
+    code.CLEAR_LINE_FORWARD()
 
 def clear_line_backward():
     """Clears the line from the cursor backward."""
     # TODO: inclusive or exclusive?
-    CLEAR_LINE_BACKWARD()
+    code.CLEAR_LINE_BACKWARD()
 
 def reset():
     """Clears the entire screen and places cursor at top left corner."""
-    CLEAR_SCREEN()
-    CURSOR_SET_POSITION(0, 0)
+    code.CLEAR_SCREEN()
+    code.CURSOR_SET_POSITION(0, 0)

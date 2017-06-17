@@ -167,7 +167,7 @@ _codes = {
 
 
 # Initialize the TerminalCode object and make it available in this
-# (nwid.terminal) namespace:
+# (nwid.terminal.codes) namespace:
 for _group, _codes in _codes.items():
     for _name, _value in _codes.items():
         setattr(modules[__name__], _name, TerminalCode(_name, _value, _group))

@@ -17,7 +17,7 @@ escape sequences.
 
 from __future__ import absolute_import
 
-from nwid.terminal.codes import *
+from nwid.terminal import codes as code
 
 ## SGR Exceptions ##
 
@@ -33,7 +33,7 @@ def create(*args):
     more attributes."""
     if not args:
         return ''
-    return CSI + _combine_sgr_codes(*args) + 'm'
+    return code.CSI + _combine_sgr_codes(*args) + 'm'
 
 def wrap(string, *args):
     """Returns the result of wrapping a string with the escape sequence."""
@@ -41,7 +41,7 @@ def wrap(string, *args):
 
 def reset():
     """Returns the escape sequence to reset the terminal to default."""
-    return create(RESET)
+    return create(code.RESET)
 
 
 ## SGR Helper Functions  ##
@@ -77,4 +77,4 @@ def _combine_sgr_codes(*codes):
 
 def _combine_attributes(*attributes):
     """Returns multiple attributes concatenated and separated by DELIMITER."""
-    return reduce(lambda a, b: str(a) + DELIMITER + str(b), attributes)
+    return reduce(lambda a, b: str(a) + code.DELIMITER + str(b), attributes)
