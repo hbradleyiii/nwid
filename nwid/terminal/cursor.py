@@ -22,54 +22,54 @@ from .codes import *
 
 def hide():
     """Hides the cursor."""
-    CURSOR_HIDE.execute()
+    CURSOR_HIDE()
 
 def show():
     """Shows the cursor."""
-    CURSOR_SHOW.execute()
+    CURSOR_SHOW()
 
 def move_up(n=1):
     """Moves your cursor up 'n' rows."""
     # TODO: is math correct here ?
-    CURSOR_UP.execute(n)
+    CURSOR_UP(n)
 
 def move_down(n=1):
     """Moves your cursor down 'n' rows."""
-    CURSOR_DOWN.execute(n)
+    CURSOR_DOWN(n)
 
 def move_left(n=1):
     """Moves your cursor left (backward) 'n' characters."""
-    CURSOR_LEFT.execute(n)
+    CURSOR_LEFT(n)
 
 def move_right(n=1):
     """Moves your cursor right (forward) 'n' characters."""
-    CURSOR_RIGHT.execute(n)
+    CURSOR_RIGHT(n)
     pass
 
 def next_line(n=1):
     """Moves your cursor (up) to the start of the next 'n'th line."""
-    CURSOR_NEXT_LINE.execute(n)
+    CURSOR_NEXT_LINE(n)
 
 def previous_line(n=1):
     """Moves your cursor (down) to the start of the previous 'n'th line."""
-    CURSOR_PREVIOUS_LINE.execute(n)
+    CURSOR_PREVIOUS_LINE(n)
 
 def horizontal_absolute(n=1):
     """Moves your cursor to the 'n' column."""
     # TODO: not completely clear on this one...
-    CURSOR_HORIZONTAL_ABSOLUTE.execute(n)
+    CURSOR_HORIZONTAL_ABSOLUTE(n)
 
 def set_position(row=0, col=0):
     """Moves cursor to position (row, col)."""
-    CURSOR_SET_POSITION.execute(row, col)
+    CURSOR_SET_POSITION(row, col)
 
 def save_position():
     """Save the current cursor position."""
-    CURSOR_SAVE_POSITION.execute()
+    CURSOR_SAVE_POSITION()
 
 def restore_position():
     """Restore the last saved cursor position."""
-    CURSOR_RESTORE_POSITION.execute()
+    CURSOR_RESTORE_POSITION()
 
 def get_position():
     """Returns a tuple of (row, col) of current cursor position."""

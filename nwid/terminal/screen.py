@@ -43,31 +43,31 @@ def size():
 
 def clear():
     """Clears the entire screen."""
-    CLEAR_SCREEN.execute()
+    CLEAR_SCREEN()
 
 def clear_down():
     """Clears the screen from the cursor down."""
-    CLEAR_DOWN.execute()
+    CLEAR_DOWN()
 
 def clear_up():
     """Clears the screen from the cursor down."""
-    CLEAR_UP.execute()
+    CLEAR_UP()
 
 def clear_line():
     """Clears the entire line."""
-    CLEAR_LINE.execute()
+    CLEAR_LINE()
 
 def clear_line_forward():
     """Clears the line from the cursor forward."""
     # TODO: inclusive or exclusive?
-    CLEAR_LINE_FORWARD.execute()
+    CLEAR_LINE_FORWARD()
 
 def clear_line_backward():
     """Clears the line from the cursor backward."""
     # TODO: inclusive or exclusive?
-    CLEAR_LINE_BACKWARD.execute()
+    CLEAR_LINE_BACKWARD()
 
 def reset():
     """Clears the entire screen and places cursor at top left corner."""
-    CLEAR_SCREEN.execute()
-    CURSOR_SET_POSITION.execute(0, 0)
+    CLEAR_SCREEN()
+    CURSOR_SET_POSITION(0, 0)

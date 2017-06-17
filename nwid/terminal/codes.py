@@ -53,14 +53,14 @@ class TerminalCode(object):
         """Allow string concatenation."""
         return str(other) + self.value
 
-    def using(self, *args):
-        """Replaces any placeholders ('{}') with *args."""
-        return self.value.format(*args)
-
-    def execute(self, *args):
+    def __call__(self, *args):
         """Outputs (executes) an escape sequence."""
         stdout.write(self.using(*args))
         stdout.flush()
+
+    def using(self, *args):
+        """Replaces any placeholders ('{}') with *args."""
+        return self.value.format(*args)
 
 
 # Terminal codes initialization #

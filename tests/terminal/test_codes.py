@@ -79,16 +79,16 @@ def test_TerminalCode_with_placeholder_but_no_args_defaults_to_1():
 
 @patch('sys.stdout.write')
 @patch('sys.stdout.flush')
-def test_TerminalCode_execute(mock_flush, mock_write):
+def test_TerminalCode_call(mock_flush, mock_write):
     """A TerminalCode object can be concatenated with a string."""
     terminal_code = TerminalCode('name', 'abc')
-    terminal_code.execute()
+    terminal_code()
     mock_write.assert_called_once_with('abc')
     mock_flush.assert_called_once()
 
 @patch('sys.stdout.write')
-def test_TerminalCode_execute_with_args(mock_write):
+def test_TerminalCode_call_with_args(mock_write):
     """A TerminalCode object can be concatenated with a string."""
     terminal_code = TerminalCode('name', 'abc{}efg{}ijk{}')
-    terminal_code.execute('d', 'h', 'l')
+    terminal_code('d', 'h', 'l')
     mock_write.assert_called_once_with('abcdefghijkl')
