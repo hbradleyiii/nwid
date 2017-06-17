@@ -15,17 +15,18 @@ from __future__ import absolute_import
 
 from mock import patch
 from nwid import terminal
-from nwid.terminal.codes import *
+from nwid.terminal import codes as code
+from nwid.terminal.codes import TerminalCode
 import pytest
 
 
 ## Terminal Code initialization test ##
 
 def test_code_initialization():
-    assert str(terminal.BLACK) == '30'
-    assert terminal.BLACK.value == '30'
-    assert BLACK + ';' == '30;'
-    assert BLACK.group == 'fg_color'
+    assert str(code.BLACK) == '30'
+    assert code.BLACK.value == '30'
+    assert code.BLACK + ';' == '30;'
+    assert code.BLACK.group == 'fg_color'
 
 
 ## Test TerminalCode object ##
