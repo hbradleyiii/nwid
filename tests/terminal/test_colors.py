@@ -61,18 +61,46 @@ def tests_color_on_color_functions_wrap_text_with_multiple_escape_codes():
     assert color.white_on_blue(string) == desired_string
 
 def tests_color_functions_can_be_nested():
-    """A color function can be nested for recursion.
+    """Multiple color functions can be nested for recursion.
     The order of appliation is the order in which they appear."""
     string = 'This is sample text.'
     desired_string = sgr.create(code.BG_WHITE) + sgr.create(code.RED) + 'This is sample text.' + sgr.reset()
     assert color.bg_white(color.red(string)) == desired_string
 
-def tests_color_functions_can_be_chained_together():
-    """A foreground color function cannot be combined with another foreground
-    color function."""
+def tests_color_functions_can_be_passed_as_attribute_arguments():
+    """A color function can take other color functions as arguments to
+    apply."""
     string = 'This is sample text.'
     desired_string = sgr.create(code.BG_WHITE, code.RED) + 'This is sample text.' + sgr.reset()
     assert color.bg_white(string, color.red) == desired_string
 
     desired_string = sgr.create(code.GREEN, code.BG_WHITE, code.UNDERLINE) + 'This is sample text.' + sgr.reset()
     assert color.green(string, color.on_white, color.underline) == desired_string
+
+def tests_color_functions_can_be_chained_together_and_nested():
+    """A color function can be nested and can take other color functions as
+    arguments at the same time."""
+    test_string = color.bg_white(
+        'magenta on white ' +
+        color.green('green (on white) ') +
+        color.blue_on_yellow('blue on yellow ' + 
+                             color.black_on_magenta('black on magenta ')) +
+        color.red('red on black ' + color.green('green (on black) '),
+                  color.on_black) +
+        ' back to default (magenta on white)', color.magenta
+    )
+
+    desired_string = \
+        sgr.create(code.BG_WHITE, code.MAGENTA) + 'magenta on white ' + \
+        sgr.create(code.GREEN) + 'green (on white) ' + sgr.reset() + \
+        sgr.create(code.BG_WHITE, code.MAGENTA) + \
+        sgr.create(code.BG_YELLOW, code.BLUE) + 'blue on yellow ' + \
+        sgr.create(code.BG_MAGENTA, code.BLACK) + 'black on magenta ' + \
+        sgr.reset() + \
+        sgr.create(code.BG_WHITE, code.MAGENTA) + \
+        sgr.create(code.RED, code.BG_BLACK) + 'red on black ' + \
+        sgr.create(code.GREEN) + 'green (on black) ' + sgr.reset() + \
+        sgr.create(code.BG_WHITE, code.MAGENTA) + \
+        ' back to default (magenta on white)' + sgr.reset()
+
+    assert test_string == desired_string 
