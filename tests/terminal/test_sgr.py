@@ -73,3 +73,12 @@ def test_can_wrap_string_with_reset_with_sgr():
             sgr.create(code.BG_BLUE) + ' a string.' + sgr.reset()
 
     assert sgr.wrap(string, code.BG_BLUE) == modified_string
+
+def test_can_wrap_string_with_trailing_reset_with_sgr():
+    """SGR function wrap can wrap a string with an SGR sequence ending in a
+    reset at the end of the string. The reset is not duplicated."""
+    string = 'This ' + sgr.create(code.RED) + 'is a string.' + sgr.reset()
+    modified_string = sgr.create(code.BG_BLUE) + 'This ' + \
+            sgr.create(code.RED) + 'is a string.' + sgr.reset()
+
+    assert sgr.wrap(string, code.BG_BLUE) == modified_string

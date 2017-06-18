@@ -53,6 +53,10 @@ def wrap(string, *args):
     :param *args: one or more escape args with which to put in one escape
         sequence.
     """
+    # Remove trailing reset
+    if string[-4:] == reset():
+        string = string[:-4]
+
     _string = ''
     for _segment in string.split(reset()):
         _string = _string + create(*args) + _segment + reset()
