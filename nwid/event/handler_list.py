@@ -6,11 +6,6 @@
 # email:            harold@bradleystudio.net
 # created on:       02/06/2016
 #
-# pylint:           disable=invalid-name
-# explanation:      Item is triggered as an invalid class attribute name since
-#                   it is uppercase, however, I am trying to indicate that it
-#                   is not a normal attribute. It is a tuple type that can be
-#                   used to create an instance of an Item named tuple.
 
 """
 nwid.event.handler_list
@@ -32,13 +27,16 @@ from collections import namedtuple
 EVENT_BUBBLE  = 0   # Default for creating events (0 == False)
 EVENT_CAPTURE = 1   # Default for triggering events
 
+HandlerListItem = namedtuple('HandlerListItem', ['callback_func', 'priority',
+                                             'identifier', 'method'])
+
 
 class HandlerList(object):
     """A HandlerList is a list of one or more listeners on an object for one
     particular event.
 
-    It defines an ordered list of a namedtuple (Item) with a callback_func and
-    priority.
+    It defines an ordered list of a namedtuple (HandlerListItem) with a
+    callback_func and priority.
 
     The list is ordered based off the priority with lower integers coming
     before higher integers. This list is intended to be used as the list of
@@ -48,9 +46,6 @@ class HandlerList(object):
     :param priority:
     :param identifier:
     """
-
-    Item = namedtuple('HandlerListItem', ['callback_func', 'priority',
-                                          'identifier', 'method'])
 
     def __init__(self, callback_func=None, priority=50, identifier=None,
                  method=EVENT_BUBBLE):
@@ -66,13 +61,13 @@ class HandlerList(object):
     def add(self, callback_func, priority=50, identifier=None,
             method=EVENT_BUBBLE):
         """Inserts item of (callback_func, priority) into the list based on priority."""
-        new_item = self.Item(callback_func, priority, identifier, method)
+        new_item = HandlerListItem(callback_func, priority, identifier, method)
         for index, item in enumerate(self._list):
             if priority < item.priority:
                 self._list = self._list[:index] + [new_item] + self._list[index:]
                 break
         else:
-            self._list.append(self.Item(callback_func, priority, identifier,
+            self._list.append(HandlerListItem(callback_func, priority, identifier,
                                         method))
 
     def remove(self, id_=None):
