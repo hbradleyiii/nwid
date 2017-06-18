@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# name:             codes.py
+# name:             sgr.py
 # author:           Harold Bradley III
 # email:            harold@bradleystudio.net
 # created on:       05/29/2017
