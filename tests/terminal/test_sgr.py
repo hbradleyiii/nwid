@@ -37,16 +37,6 @@ def test_can_combine_sgr_codes():
         code.CSI + code.UNDERLINE + code.DELIMITER + code.BLACK + \
         code.DELIMITER + code.BG_RED + 'm'
 
-def test_cannot_combine_multiple_sgr_fg_colors():
-    """Multiple foreground colors cannot be combined in one SGR code."""
-    with pytest.raises(sgr.SGRFGColorError):
-        sgr.create(code.BLACK, code.RED)
-
-def test_cannot_combine_multiple_sgr_bg_colors():
-    """Multiple background colors cannot be combined in one SGR code."""
-    with pytest.raises(sgr.SGRBGColorError):
-        sgr.create(code.BG_BLACK, code.BG_RED)
-
 def test_cannot_use_non_sgr_escape_sequence_as_sgr():
     """Only SGR escape sequences can be used as an SGR code."""
     with pytest.raises(sgr.SGRError):

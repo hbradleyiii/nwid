@@ -67,30 +67,11 @@ def wrap(string, *args):
 
 def _combine_sgr_codes(*codes):
     """Returns multiple attributes concatenated and separated by DELIMITER."""
-    has_fg_code = False
-    has_bg_code = False
-
     # Error checking:
     for code in codes:
         # Must be in one of these groups:
         if code.group not in [ 'style', 'fg_color', 'bg_color']:
             raise SGRError('Not an SGR code.')
-
-        # Should only have one foreground color:
-        if code.group == 'fg_color':
-            if has_fg_code:
-                raise SGRFGColorError('Cannot have multiple foreground colors\
-                                       at the same time.')
-            else:
-                has_fg_code = True
-
-        # Should only have one background color:
-        if code.group == 'bg_color':
-            if has_bg_code:
-                raise SGRBGColorError('Cannot have multiple background colors\
-                                       at the same time.')
-            else:
-                has_bg_code = True
 
     return _combine_attributes(*codes)
 
