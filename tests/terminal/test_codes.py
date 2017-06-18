@@ -14,10 +14,8 @@ Unittests for nwid.terminal.codes module.
 from __future__ import absolute_import
 
 from mock import patch
-from nwid import terminal
 from nwid.terminal import codes as code
 from nwid.terminal.codes import TerminalCode
-import pytest
 
 
 ## Terminal Code initialization test ##

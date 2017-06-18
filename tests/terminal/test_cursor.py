@@ -16,7 +16,6 @@ from __future__ import absolute_import
 from mock import patch
 from nwid.terminal import codes as code
 from nwid.terminal import cursor
-import pytest
 
 
 ## Cursor code escape sequence tests ##
