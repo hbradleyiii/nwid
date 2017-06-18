@@ -18,7 +18,6 @@ A terminal widgets framework for humans.
 from __future__ import absolute_import
 
 from .point import Point, Size
-from . import widget
 
 
 __title__ = 'nwid'
