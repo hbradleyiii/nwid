@@ -35,13 +35,28 @@ def create(*args):
         return ''
     return code.CSI + _combine_sgr_codes(*args) + 'm'
 
-def wrap(string, *args):
-    """Returns the result of wrapping a string with the escape sequence."""
-    return create(*args) + string + reset()
-
 def reset():
     """Returns the escape sequence to reset the terminal to default."""
     return create(code.RESET)
+
+def wrap(string, *args):
+    """Takes a string and wraps an ANSI SGR escape sequence around it.
+
+    If a reset is found in the middle of the string, the attribute is set again
+    immediately following the reset. The entire string is concluded with the
+    reset. This allows for unlimited nesting. (Without this, the first reset
+    would clear the sequence for the entire rest of the string.)
+
+    Note: Returned string will always end in a reset.
+
+    :param string: the string around which to wrap the ANSI SGR escape sequence.
+    :param *args: one or more escape args with which to put in one escape
+        sequence.
+    """
+    _string = ''
+    for _segment in string.split(reset()):
+        _string = _string + create(*args) + _segment + reset()
+    return _string
 
 
 ## SGR Helper Functions  ##
