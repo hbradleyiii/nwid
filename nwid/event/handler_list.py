@@ -6,6 +6,11 @@
 # email:            harold@bradleystudio.net
 # created on:       02/06/2016
 #
+# pylint:           disable=invalid-name
+# explanation:      Item is triggered as an invalid class attribute name since
+#                   it is uppercase, however, I am trying to indicate that it
+#                   is not a normal attribute. It is a tuple type that can be
+#                   used to create an instance of an Item named tuple.
 
 """
 nwid.event.handler_list
