@@ -13,7 +13,7 @@ Unittests for nwid.event.handler_list module.
 
 from __future__ import absolute_import
 
-from nwid.event import EVENT_BUBBLE, EVENT_CAPTURE, HandlerList
+from nwid.event import EVENT_BUBBLE, EVENT_CAPTURE, HandlerList 
 from nwid.event.handler_list import HandlerListItem
 
 
