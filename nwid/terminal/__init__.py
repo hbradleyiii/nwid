@@ -10,4 +10,4 @@ Terminal codes, helper functions, and objects.
 
 from __future__ import absolute_import
 
-from .terminal_string import TerminalString
+from .string import TerminalString

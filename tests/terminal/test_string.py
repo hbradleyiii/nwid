@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# name:             test_sgr.py
+# name:             test_string.py
 # author:           Harold Bradley III
 # email:            harold@bradleystudio.net
 # created on:       06/16/2017
 #
 
 """
-Unittests for nwid.terminal.terminal_string module.
+Unittests for nwid.terminal.string module.
 """
 
 from __future__ import absolute_import
@@ -16,7 +16,7 @@ from __future__ import absolute_import
 from nwid.terminal import codes as code
 from nwid.terminal import colors as color
 from nwid.terminal import sgr, TerminalString
-from nwid.terminal.terminal_string import EscapeMarker
+from nwid.terminal.string import EscapeMarker
 
 
 ## Test TerminalString object ##
@@ -220,3 +220,5 @@ def test_TerminalString_splicing_works_with_step_value():
     """Splicing a TerminalString works with step value."""
     # TODO: Not yet implemented.
     pass
+
+    # ALSO TODO: work on string type tests
