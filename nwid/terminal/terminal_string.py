@@ -55,7 +55,7 @@ class TerminalString(object):
         self.escape_markers = []
         for index, char in enumerate(self.string):
             # Mark the stop of an escape sequence
-            if sequence_start != None and char in string.letters:
+            if sequence_start is None and char in string.letters:
                 self.escape_markers.append(EscapeMarker(sequence_start, index))
                 sequence_start = None  # Reset start sequence 
 
