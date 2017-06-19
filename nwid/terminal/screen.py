@@ -17,11 +17,12 @@ its size.
 
 from __future__ import absolute_import
 
-from .codes import *
+from . import codes as code
+from nwid import Size
 
 
 def size():
-    """Returns the size of the window as a tuple of columns, rows. (x, y)
+    """Returns the size of the window as a Size object (rows, cols).
     Note that this is the actual size; in order to get the bottom right corner,
     you must subtract 1 from both the rows and the columns."""
     try:
@@ -32,42 +33,42 @@ def size():
 
         with open(ctermid()) as fd:
             size = unpack('hh', ioctl(fd, TIOCGWINSZ, '----'))
-            return (size[1], size[0])  # swap the size so we have (x, y)
+            return Size(size[0], size[1])
 
     except ImportError:
         from os import environ
         try:
-            return (environ['COLUMNS'], environ['LINES'])
+            return Size(environ['COLUMNS'], environ['LINES'])
         except KeyError:
-            return (25, 80)  # just send back a best guess
+            return Size(25, 80)  # just send back a best guess
 
 def clear():
     """Clears the entire screen."""
-    CLEAR_SCREEN.execute()
+    code.CLEAR_SCREEN()
 
 def clear_down():
     """Clears the screen from the cursor down."""
-    CLEAR_DOWN.execute()
+    code.CLEAR_DOWN()
 
 def clear_up():
     """Clears the screen from the cursor down."""
-    CLEAR_UP.execute()
+    code.CLEAR_UP()
 
 def clear_line():
     """Clears the entire line."""
-    CLEAR_LINE.execute()
+    code.CLEAR_LINE()
 
 def clear_line_forward():
     """Clears the line from the cursor forward."""
     # TODO: inclusive or exclusive?
-    CLEAR_LINE_FORWARD.execute()
+    code.CLEAR_LINE_FORWARD()
 
 def clear_line_backward():
     """Clears the line from the cursor backward."""
     # TODO: inclusive or exclusive?
-    CLEAR_LINE_BACKWARD.execute()
+    code.CLEAR_LINE_BACKWARD()
 
 def reset():
     """Clears the entire screen and places cursor at top left corner."""
-    CLEAR_SCREEN.execute()
-    CURSOR_SET_POSITION.execute(0, 0)
+    code.CLEAR_SCREEN()
+    code.CURSOR_SET_POSITION(0, 0)

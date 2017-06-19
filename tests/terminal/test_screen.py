@@ -16,9 +16,8 @@ Note: screen.size() is not tested here.
 from __future__ import absolute_import
 
 from mock import patch
+from nwid.terminal import codes as code
 from nwid.terminal import screen
-from nwid.terminal.codes import *
-import pytest
 
 
 ## Screen code escape sequence tests ##
@@ -27,41 +26,41 @@ import pytest
 def test_screen_clear(mock_write):
     """Tests screen.clear() escape sequence."""
     screen.clear()
-    mock_write.assert_called_once_with(CLEAR_SCREEN.value)
+    mock_write.assert_called_once_with(code.CLEAR_SCREEN.value)
 
 @patch('sys.stdout.write')
 def test_screen_clear_down(mock_write):
     """Tests screen.clear_down() escape sequence."""
     screen.clear_down()
-    mock_write.assert_called_once_with(CLEAR_DOWN.value)
+    mock_write.assert_called_once_with(code.CLEAR_DOWN.value)
 
 @patch('sys.stdout.write')
 def test_screen_clear_up(mock_write):
     """Tests screen.clear_up() escape sequence."""
     screen.clear_up()
-    mock_write.assert_called_once_with(CLEAR_UP.value)
+    mock_write.assert_called_once_with(code.CLEAR_UP.value)
 
 @patch('sys.stdout.write')
 def test_screen_clear_line(mock_write):
     """Tests screen.clear_line() escape sequence."""
     screen.clear_line()
-    mock_write.assert_called_once_with(CLEAR_LINE.value)
+    mock_write.assert_called_once_with(code.CLEAR_LINE.value)
 
 @patch('sys.stdout.write')
 def test_screen_clear_line_forward(mock_write):
     """Tests screen.clear_line_forward() escape sequence."""
     screen.clear_line_forward()
-    mock_write.assert_called_once_with(CLEAR_LINE_FORWARD.value)
+    mock_write.assert_called_once_with(code.CLEAR_LINE_FORWARD.value)
 
 @patch('sys.stdout.write')
 def test_screen_clear_line_backward(mock_write):
     """Tests screen.clear_line_backward() escape sequence."""
     screen.clear_line_backward()
-    mock_write.assert_called_once_with(CLEAR_LINE_BACKWARD.value)
+    mock_write.assert_called_once_with(code.CLEAR_LINE_BACKWARD.value)
 
 @patch('sys.stdout.write')
 def test_screen_reset(mock_write):
     """Tests screen.reset() escape sequence."""
     screen.reset()
-    mock_write.assert_any_call(CURSOR_SET_POSITION.using(0,0))
-    mock_write.assert_any_call(CLEAR_SCREEN.value)
+    mock_write.assert_any_call(code.CURSOR_SET_POSITION.using(0,0))
+    mock_write.assert_any_call(code.CLEAR_SCREEN.value)

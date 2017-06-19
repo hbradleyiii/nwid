@@ -53,14 +53,14 @@ class TerminalCode(object):
         """Allow string concatenation."""
         return str(other) + self.value
 
-    def using(self, *args):
-        """Replaces any placeholders ('{}') with *args."""
-        return self.value.format(*args)
-
-    def execute(self, *args):
+    def __call__(self, *args):
         """Outputs (executes) an escape sequence."""
         stdout.write(self.using(*args))
         stdout.flush()
+
+    def using(self, *args):
+        """Replaces any placeholders ('{}') with *args."""
+        return self.value.format(*args)
 
 
 # Terminal codes initialization #
@@ -124,7 +124,7 @@ _codes = {
         'SET_SCROLL_ALL':    CSI + 'r',
         'SET_SCROLL':        CSI + '0;0r',
         'SCROLL_UP':         ESC + 'D',
-        'SCROLL_UP':         ESC + 'M',
+        'SCROLL_DOWN':       ESC + 'M',
     },
 
 
@@ -167,7 +167,7 @@ _codes = {
 
 
 # Initialize the TerminalCode object and make it available in this
-# (nwid.terminal) namespace:
+# (nwid.terminal.codes) namespace:
 for _group, _codes in _codes.items():
     for _name, _value in _codes.items():
         setattr(modules[__name__], _name, TerminalCode(_name, _value, _group))

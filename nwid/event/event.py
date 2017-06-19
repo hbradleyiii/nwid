@@ -72,14 +72,7 @@ _events = {
         'SIGWINCH': signal.SIGWINCH,
     },
 
-    'keyboard' : {
-        'KEY_ESCAPE': '\x1b',
-
-        'KEY_UP': '\x1b[A',
-        'KEY_DOWN': '\x1b[B',
-        'KEY_RIGHT': '\x1b[C',
-        'KEY_LEFT': '\x1b[D',
-
+    'printable' : {
         'KEY_A': ord('A'),
         'KEY_B': ord('B'),
         'KEY_C': ord('C'),
@@ -133,6 +126,15 @@ _events = {
         'KEY_x': ord('x'),
         'KEY_y': ord('y'),
         'KEY_z': ord('z'),
+    },
+
+    'keyboard' : {
+        'KEY_ESCAPE': '\x1b',
+
+        'KEY_UP': '\x1b[A',
+        'KEY_DOWN': '\x1b[B',
+        'KEY_RIGHT': '\x1b[C',
+        'KEY_LEFT': '\x1b[D',
 
         'KEY_BACKSPACE': '\x1b[D',
         'KEY_TAB': '\x1b[D',
@@ -192,6 +194,7 @@ _events = {
     },
 }
 
+# Using singular because this is a mapping entity
 event = {}
 
 # Create and populate dict of events (consisting of a tuple of the event,

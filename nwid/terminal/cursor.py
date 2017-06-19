@@ -17,86 +17,73 @@ cursor.
 
 from __future__ import absolute_import
 
-from .codes import *
+from . import codes as code
 
 
 def hide():
     """Hides the cursor."""
-    CURSOR_HIDE.execute()
+    code.CURSOR_HIDE()
 
 def show():
     """Shows the cursor."""
-    CURSOR_SHOW.execute()
+    code.CURSOR_SHOW()
 
 def move_up(n=1):
     """Moves your cursor up 'n' rows."""
     # TODO: is math correct here ?
-    CURSOR_UP.execute(n)
+    code.CURSOR_UP(n)
 
 def move_down(n=1):
     """Moves your cursor down 'n' rows."""
-    CURSOR_DOWN.execute(n)
+    code.CURSOR_DOWN(n)
 
 def move_left(n=1):
     """Moves your cursor left (backward) 'n' characters."""
-    CURSOR_LEFT.execute(n)
+    code.CURSOR_LEFT(n)
 
 def move_right(n=1):
     """Moves your cursor right (forward) 'n' characters."""
-    CURSOR_RIGHT.execute(n)
-    pass
+    code.CURSOR_RIGHT(n)
 
 def next_line(n=1):
     """Moves your cursor (up) to the start of the next 'n'th line."""
-    CURSOR_NEXT_LINE.execute(n)
+    code.CURSOR_NEXT_LINE(n)
 
 def previous_line(n=1):
     """Moves your cursor (down) to the start of the previous 'n'th line."""
-    CURSOR_PREVIOUS_LINE.execute(n)
+    code.CURSOR_PREVIOUS_LINE(n)
 
 def horizontal_absolute(n=1):
     """Moves your cursor to the 'n' column."""
     # TODO: not completely clear on this one...
-    CURSOR_HORIZONTAL_ABSOLUTE.execute(n)
+    code.CURSOR_HORIZONTAL_ABSOLUTE(n)
 
-def set_position(x=0, y=0):
-    """Moves cursor to position row=x and col=y (x, y).
-    NOTE: This assumes starting at (0, 0) which is different than the ANSI
-    standard; it also assumes (x, y) and not (y, x) per ANSI standard."""
-    CURSOR_SET_POSITION.execute(x, y)
+def set_position(row=0, col=0):
+    """Moves cursor to position (row, col)."""
+    code.CURSOR_SET_POSITION(row, col)
 
 def save_position():
     """Save the current cursor position."""
-    CURSOR_SAVE_POSITION.execute()
+    code.CURSOR_SAVE_POSITION()
 
 def restore_position():
     """Restore the last saved cursor position."""
-    CURSOR_RESTORE_POSITION.execute()
+    code.CURSOR_RESTORE_POSITION()
 
 def get_position():
-    """Returns a tuple of (x, y) of current cursor position.
-    NOTE: this follows conventional (x, y) order and starts with (0, 0) and not
-    the order according to the ANSI standard."""
-    QCU = CSI + '6n'  # Query cursor position (to stdin)
-    RCU = CSI + '{0};{1}R' # Reports Cursor positon (result from above query
+    """Returns a tuple of (row, col) of current cursor position."""
+    code.QCU = code.CSI + '6n'  # Query cursor position (to stdin)
+    code.RCU = code.CSI + '{0};{1}R' # Reports Cursor positon (result from above query
                         # Reports as <ESC>[{row};{column}R
                         # Note that this is backwards order
     return (0, 0)
 
 def row():
     """Returns the cursor's current row."""
-    return x()
+    row, col = get_position()
+    return row()
 
 def col():
     """Returns the cursor's current column."""
-    return y()
-
-def x():
-    """Returns the cursor's current row."""
-    x, y = get_position()
-    return x
-
-def y(self):
-    """Returns the cursor's current column."""
-    x, y = get_position()
-    return y
+    row, col = get_position()
+    return col()
