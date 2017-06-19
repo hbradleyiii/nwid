@@ -26,10 +26,8 @@ class RunCallbackCloseWindow(Exception):
 class CloseWindow(Exception):
     """Exception used to exit App's event loop."""
 
-
-
 class WindowNotBound(Exception):
-    """ """
+    """Exception that occurs when a window is not bound."""
 
 class OutOfBounds(Exception):
-    """ """
+    """Exception that occurs when trying to print off of the screen."""

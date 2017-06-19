@@ -33,6 +33,7 @@ def Mock_reset():
 
 
 class Mock():
+    """Mock callback tracker."""
     mock_callback_was_called = False
     mock_alt_callback_was_called = False
 
@@ -60,6 +61,7 @@ class MockEventHandlerWidget(EventHandler):
 
 
 class MockCallback(object):
+    """Mock callback object."""
     def __init__(self):
         self.order = []
 

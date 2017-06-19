@@ -21,6 +21,7 @@ import pytest
 ## Test Scrollable mixin ##
 
 class MockScrollable(Scrollable):
+    """A Mock of a scrollable object."""
     def __init__(self):
         self.size = Size(15, 15)
         self.offset = Point(5, 5)
@@ -28,6 +29,7 @@ class MockScrollable(Scrollable):
         super(MockScrollable, self).__init__()
 
 class MockViewport(object):
+    """A Mock of an object with a viewport."""
     def __init__(self, height = 5, width = 5):
         self.size = Size(height, width)
 
@@ -35,6 +37,7 @@ class MockViewport(object):
 def test_Scrollable_must_have_offset_property():
     """A Scrollable object must have an offset property."""
     class MockObject(Scrollable):
+        """A Mock of a scrollable object."""
         def __init__(self):
             self.size = Size()
             self.viewport = MockViewport()
@@ -46,6 +49,7 @@ def test_Scrollable_must_have_offset_property():
 def test_Scrollable_must_have_size_property():
     """A Scrollable object must have a size property."""
     class MockObject(Scrollable):
+        """A Mock of a scrollable object."""
         def __init__(self):
             self.offset = Point()
             self.viewport = MockViewport()
@@ -57,6 +61,7 @@ def test_Scrollable_must_have_size_property():
 def test_Scrollable_must_have_viewport_property():
     """A Scrollable object must have a viewport property."""
     class MockObject(Scrollable):
+        """A Mock of a scrollable object."""
         def __init__(self):
             self.size = Size()
             self.offset = Point()
