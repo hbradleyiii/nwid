@@ -21,9 +21,9 @@ from nwid.terminal import codes as code
 
 ## SGR Exceptions ##
 
-class SGRFGColorError(Exception): pass
-class SGRBGColorError(Exception): pass
-class SGRError(Exception): pass
+class SGRError(Exception):
+    """An error that occurs when attempting to pass an escape code that is not
+    an SGR code."""
 
 
 ## SGR Create functions ##
