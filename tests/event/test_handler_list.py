@@ -14,6 +14,7 @@ Unittests for nwid.event.handler_list module.
 from __future__ import absolute_import
 
 from nwid.event import EVENT_BUBBLE, EVENT_CAPTURE, HandlerList
+from nwid.event.handler_list import HandlerListItem
 
 
 def mock_callback():
@@ -28,14 +29,14 @@ def mock_alt_callback():
 def test_HandlerList_can_be_initialized_with_an_item():
     """A HandlerList can be initialized with an item."""
     handler_list = HandlerList(mock_callback, 1)
-    assert handler_list._list[0] == handler_list.Item(mock_callback, 1, None,
-                                                      False)
+    assert handler_list._list[0] == HandlerListItem(mock_callback, 1, None,
+                                                    False)
 
 def test_HandlerList_can_have_items_added():
     """A HandlerList can have items added using the 'add' method."""
     handler_list = HandlerList()
     handler_list.add(mock_callback, 1)
-    assert handler_list._list[0] == handler_list.Item(mock_callback, 1, None,
+    assert handler_list._list[0] == HandlerListItem(mock_callback, 1, None,
                                                       False)
 
 def test_HandlerList_can_add_multiple_items():
@@ -45,11 +46,11 @@ def test_HandlerList_can_add_multiple_items():
     handler_list.add(mock_callback)
     handler_list.add(mock_callback)
     handler_list.add(mock_callback)
-    assert handler_list._list[0] == handler_list.Item(mock_callback, 50, None,
+    assert handler_list._list[0] == HandlerListItem(mock_callback, 50, None,
                                                       False)
-    assert handler_list._list[1] == handler_list.Item(mock_callback, 50, None,
+    assert handler_list._list[1] == HandlerListItem(mock_callback, 50, None,
                                                       False)
-    assert handler_list._list[2] == handler_list.Item(mock_callback, 50, None,
+    assert handler_list._list[2] == HandlerListItem(mock_callback, 50, None,
                                                       False)
 
 def test_HandlerList_can_add_multiple_items_with_priorities():
@@ -59,11 +60,11 @@ def test_HandlerList_can_add_multiple_items_with_priorities():
     handler_list.add(mock_callback, 3)
     handler_list.add(mock_callback, 1)
     handler_list.add(mock_callback, 2)
-    assert handler_list._list[0] == handler_list.Item(mock_callback, 1, None,
+    assert handler_list._list[0] == HandlerListItem(mock_callback, 1, None,
                                                       False)
-    assert handler_list._list[1] == handler_list.Item(mock_callback, 2, None,
+    assert handler_list._list[1] == HandlerListItem(mock_callback, 2, None,
                                                       False)
-    assert handler_list._list[2] == handler_list.Item(mock_callback, 3, None,
+    assert handler_list._list[2] == HandlerListItem(mock_callback, 3, None,
                                                       False)
 
 def test_HandlerList_can_add_multiple_items_with_some_having_same_priority():
@@ -75,13 +76,13 @@ def test_HandlerList_can_add_multiple_items_with_some_having_same_priority():
     handler_list.add(mock_callback, 5)
     handler_list.add(mock_callback, 2)
     handler_list.add(mock_alt_callback, 2)
-    assert handler_list._list[0] == handler_list.Item(mock_callback, 1, None,
+    assert handler_list._list[0] == HandlerListItem(mock_callback, 1, None,
                                                       False)
-    assert handler_list._list[1] == handler_list.Item(mock_callback, 2, None,
+    assert handler_list._list[1] == HandlerListItem(mock_callback, 2, None,
                                                       False)
-    assert handler_list._list[2] == handler_list.Item(mock_alt_callback, 2,
+    assert handler_list._list[2] == HandlerListItem(mock_alt_callback, 2,
                                                       None, False)
-    assert handler_list._list[3] == handler_list.Item(mock_callback, 5, None,
+    assert handler_list._list[3] == HandlerListItem(mock_callback, 5, None,
                                                       False)
 
 def test_HandlerList_can_add_items_without_a_priority():
