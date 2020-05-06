@@ -48,6 +48,20 @@ Installing nwid
 
     $ pip install nwid
 
+
+Development Setup
+-----------------
+
+.. code:: bash
+
+    # Setup venv
+    $ python -m venv venv
+    $ source venv/bin/activate
+
+    # Install dependencies
+    $ pip install -r requirements.txt
+
+
 Running Tests
 -------------
 
@@ -55,6 +69,7 @@ Running Tests
 
     $ cd <project directory>
     $ py.test
+
 
 Importing and Basic Usage
 -------------------------
