@@ -2,11 +2,6 @@ nwid
 ####
 A terminal widgets framework for humans.
 ===========================================================
-.. image:: https://www.quantifiedcode.com/api/v1/project/d817599b176740e49b42d1f8402d4d3e/badge.svg
-  :target: https://www.quantifiedcode.com/app/project/d817599b176740e49b42d1f8402d4d3e
-  :alt: Code issues
-
-----
 
 Please note that this is a work in progress. The API will likely change many
 times before it becomes stable. Use at your own risk.
